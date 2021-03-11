@@ -1,0 +1,15 @@
+<div *ngIf="dataLoaded==false" class="spinner-border text-primary" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+<table *ngIf="dataLoaded==true" class="table">
+    <thead>
+        <th>Color Id</th>
+        <th>Color Name</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let color of colors">
+            <td>{{color.colorId}}</td>
+            <td>{{color.colorName}}</td>
+        </tr>
+    </tbody>
+</table> 
