@@ -1,7 +1,11 @@
 <div *ngIf="dataLoaded==false" class="spinner-border text-primary" role="status">
     <span class="visually-hidden">Loading...</span>
   </div>
-<table *ngIf="dataLoaded==true" class="table">
+
+<h3>{{title}}</h3>
+
+
+<table *ngIf="dataLoaded==true" class="table table-bordered">
     <thead>
         <th>Rental Id</th>
         <th>Brand Name</th>

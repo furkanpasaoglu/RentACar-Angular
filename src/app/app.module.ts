@@ -19,7 +19,7 @@ import { NaviComponent } from './components/navi/navi.component';
     CustomerComponent,
     CarComponent,
     RentalComponent,
-    NaviComponent
+    NaviComponent,
   ],
   imports: [
     BrowserModule,

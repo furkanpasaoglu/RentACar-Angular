@@ -10,7 +10,7 @@ import { RentalService } from 'src/app/services/rental.service';
 export class RentalComponent implements OnInit {
   rentals:Rental[]=[];
   dataLoaded = false;
-
+  title = "Rental List";
   constructor(private rentalService:RentalService) { }
 
   ngOnInit(): void {

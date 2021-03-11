@@ -10,7 +10,8 @@ import { BrandService } from 'src/app/services/brand.service';
 export class BrandComponent implements OnInit {
   brands:Brand[]=[];
   dataLoaded = false;
-
+  title="Brand List";
+  
   constructor(private brandService:BrandService) { }
 
   ngOnInit(): void {
