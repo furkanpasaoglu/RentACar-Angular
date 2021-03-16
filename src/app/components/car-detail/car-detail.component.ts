@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { NgbConfig } from '@ng-bootstrap/ng-bootstrap';
 import { Car } from 'src/app/models/car';
-import { CarDetail } from 'src/app/models/carDetail';
-import { CarImage } from 'src/app/models/carImage';
 import { CarService } from 'src/app/services/car.service';
 
 @Component({
@@ -12,8 +11,8 @@ import { CarService } from 'src/app/services/car.service';
 })
 export class CarDetailComponent implements OnInit {
   carDetails:Car[];
-  carImages:CarImage[]=[];
-
+  //carImages:CarImage[]=[];
+  
 
   constructor(private carService:CarService,private activatedRoute:ActivatedRoute) { }
 
@@ -27,7 +26,7 @@ export class CarDetailComponent implements OnInit {
 
   getCarDetail(carId:number){
     this.carService.getCarDetail(carId).subscribe(response=>{
-      console.log(response);
+      //console.log(response);
       this.carDetails = response.data
     })
   }

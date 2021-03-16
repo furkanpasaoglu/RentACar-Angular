@@ -33,7 +33,6 @@ export class CarService {
     return this.httpClient.get<ListResponseModel<Car>>(newPath)
   }
 
-
   // getImagesById(imageId:number):Observable<ListResponseModel<Car>>{
   //   let newPath = this.apiUrl + "/carImages/getbyid?id="+imageId
   //   return this.httpClient.get<ListResponseModel<Car>>(newPath)

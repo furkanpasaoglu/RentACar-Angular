@@ -1,28 +1,22 @@
-<div class="card mb-3" *ngFor ="let car of carDetails let i=index">
-  <ngb-carousel>
-    <ng-template ngbSlide>
-      <div class="wrapper">
-        <h5>{{carDetails.length}}</h5>
-        <img  
-        src="https://localhost:44356/{{car.imagePath}}">
+<ngb-carousel>
+  <ng-template ngbSlide *ngFor ="let car of carDetails">
+      <div class="picsum-img-wrapper">
+        <img  class="d-block w-100" style="width: 900px; height: 435px;" src="https://localhost:44356/{{car.imagePath}}" >
       </div>
-      <!-- <div class="carousel-caption">
-        <h3>First Slide</h3>
-        <p> Angular 10 Carousel Example </p>
-      </div> -->
-    </ng-template>
-  </ngb-carousel>
+  </ng-template>
+</ngb-carousel>
 
-  <!-- <img class="card-img-top" src="https://localhost:44356/{{car.imagePath}}" alt="Card image cap"> -->
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text"><b>Bilgi:</b> {{car.description}}</p>
+<br>
+
+<div class="card"*ngFor ="let car of carDetails; let i = index">
+  <div class="card-body" *ngIf="i<1">
+    <h5 class="card-title">{{car.brandName}} {{car.description}}</h5>
+    <hr>
     <p class="card-text"><b>Marka:</b> {{car.brandName}}</p>
+    <p class="card-text"><b>Model:</b> {{car.description}}</p>
     <p class="card-text"><b>Renk:</b>{{car.colorName}}</p>
     <p class="card-text"><b>Yıl:</b>{{car.modelYear}}</p>
-    <p class="card-text"><b>Fiyat:</b>{{car.dailyPrice}}</p>
-    <a href="#" class="btn btn-primary">Rent</a>
- 
-    
-
+    <p class="card-text"><b>Fiyat:</b> {{car.dailyPrice}} Türk Lirası</p>
+    <a href="#" class="btn btn-primary">Kirala</a>
+  </div>
 </div>

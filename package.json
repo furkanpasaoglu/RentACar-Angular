@@ -21,7 +21,7 @@
     "@angular/platform-browser-dynamic": "~11.2.4",
     "@angular/router": "~11.2.4",
     "@ng-bootstrap/ng-bootstrap": "^9.0.2",
-    "bootstrap": "^4.5.0",
+    "jquery": "^3.6.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.3"
@@ -32,7 +32,7 @@
     "@angular/compiler-cli": "~11.2.4",
     "@types/jasmine": "~3.6.0",
     "@types/node": "^12.11.1",
-    "bootstrap": "^5.0.0-beta2",
+    "bootstrap": "^4.6.0",
     "codelyzer": "^6.0.0",
     "jasmine-core": "~3.6.0",
     "jasmine-spec-reporter": "~5.0.0",
