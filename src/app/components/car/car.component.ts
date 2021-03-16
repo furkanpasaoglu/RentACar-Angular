@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Car } from 'src/app/models/car';
 import { CarService } from 'src/app/services/car.service';
+import {faLiraSign} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-car',
@@ -11,7 +12,7 @@ import { CarService } from 'src/app/services/car.service';
 export class CarComponent implements OnInit {
   cars:Car[]=[];
   dataLoaded = false;
-  title = "Car Detail List";
+  faLira = faLiraSign;
 
   constructor(private carService:CarService,private activatedRoute:ActivatedRoute) { }
 
@@ -40,13 +41,13 @@ export class CarComponent implements OnInit {
     this.carService.getCarsByBrand(brandId).subscribe(response=>{
       this.cars = response.data
       this.dataLoaded = true;
-    })   
+    })
   }
 
   getCarsByColor(colorId:number) {
     this.carService.getCarsByColor(colorId).subscribe(response=>{
       this.cars = response.data
       this.dataLoaded = true;
-    })   
+    })
   }
 }

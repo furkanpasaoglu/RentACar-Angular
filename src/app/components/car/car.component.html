@@ -3,7 +3,6 @@
 </div>
 <div class="row" *ngIf="dataLoaded==true">
   <div *ngFor="let car of cars" class="card" style="width: 20rem;">
-    <!-- https://localhost:44356/{{car.imagePath}} -->
     <img src="https://localhost:44356/{{car.imagePath}}" class="card-img-top" alt="{{car.description}} Image" width="318px" height="200">
     <div  class="card-body">
     </div >
@@ -11,7 +10,7 @@
       <li class="list-group-item"><b>Marka:</b><span style="float: right;"> {{car.brandName}}</span></li>
       <li class="list-group-item"><b>Renk:</b><span style="float: right;">{{car.colorName}}</span></li>
       <li class="list-group-item"><b>Model Yılı:</b> <span style="float: right;">{{car.modelYear}}</span></li>
-      <li class="list-group-item"><b>Fiyat:</b><span style="float: right;">{{car.dailyPrice}} Türk Lirası</span></li>
+      <li class="list-group-item"><b>Fiyat:</b><span style="float: right;">{{car.dailyPrice}} <fa-icon [icon]="faLira"></fa-icon></span></li>
     </ul>
     <div class="card-body">
       <section style="float:left">
@@ -23,25 +22,3 @@
     </div>
   </div>
 </div>
-
-<!-- <div *ngIf="dataLoaded==false" class="spinner-border text-primary" role="status">
-    <span class="visually-hidden">Loading...</span>
-  </div>
-<div class="row" *ngIf="dataLoaded==true" >
-    <div class="card" style="width: 18rem;" *ngFor="let car of cars">
-        <img class="card-img-top" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22286%22%20height%3D%22180%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20286%20180%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_17835bc6dc0%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A14pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_17835bc6dc0%22%3E%3Crect%20width%3D%22286%22%20height%3D%22180%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2298%22%20y%3D%2296.6%22%3EImage%20cap%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="Card image cap">
-        <div class="card-body">
-          <p class="card-text"><b>Car Id:</b> {{car.id}}</p>
-          <p class="card-text"><b>Car Brand Name:</b> {{car.brandName}}</p>
-          <p class="card-text"><b>Car Color Name:</b> {{car.colorName}}</p>
-          <a routerLink = "cars/details/{{car.id}}"  class="btn btn-primary">Details</a>
-        </div>
-      </div>
-</div> -->
-<!--   
-            <td>{{car.id}}</td>
-            <td>{{car.brandName}}</td>
-            <td>{{car.colorName}}</td>
-            <td>{{car.modelYear}}</td>
-            <td>{{car.dailyPrice}}</td>
-            <td>{{car.description}}</td> -->

@@ -4,12 +4,13 @@ import { Observable } from 'rxjs';
 import { Car } from '../models/car';
 
 import { ListResponseModel } from '../models/listResponseModel';
+import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CarDetailService {
-  apiUrl = "https://localhost:44356/api/"
+  apiUrl = environment.apiUrl
   constructor(private httpClient:HttpClient) { }
 
   getCarDetailById(carId:number):Observable<ListResponseModel<Car>>{

@@ -8,7 +8,7 @@
 
 <br>
 
-<div class="card"*ngFor ="let car of carDetails; let i = index">
+<div class="card"  *ngFor ="let car of carDetails; let i = index">
   <div class="card-body" *ngIf="i<1">
     <h5 class="card-title">{{car.brandName}} {{car.description}}</h5>
     <hr>
@@ -16,7 +16,9 @@
     <p class="card-text"><b>Model:</b> {{car.description}}</p>
     <p class="card-text"><b>Renk:</b>{{car.colorName}}</p>
     <p class="card-text"><b>Yıl:</b>{{car.modelYear}}</p>
-    <p class="card-text"><b>Fiyat:</b> {{car.dailyPrice}} Türk Lirası</p>
+    <p class="card-text"><b>Fiyat:</b> {{car.dailyPrice}} <fa-icon [icon]="faLira"></fa-icon></p>
     <a href="#" class="btn btn-primary">Kirala</a>
   </div>
 </div>
+
+<br>

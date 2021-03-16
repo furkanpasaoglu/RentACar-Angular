@@ -9,7 +9,6 @@ import { BrandService } from 'src/app/services/brand.service';
 })
 export class BrandComponent implements OnInit {
   brands:Brand[];
-  title="Brand List";
   currentBrand : Brand;
 
 
@@ -25,7 +24,7 @@ export class BrandComponent implements OnInit {
     })
   }
 
-  setCurrentBrand(brand:Brand){//yazmasanda olur type safe
+  setCurrentBrand(brand:Brand){
     this.currentBrand = brand;
   }
 
