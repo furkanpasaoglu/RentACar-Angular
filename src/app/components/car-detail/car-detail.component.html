@@ -1,7 +1,7 @@
 <ngb-carousel>
   <ng-template ngbSlide *ngFor ="let car of carDetails">
       <div class="picsum-img-wrapper">
-        <img  class="d-block w-100" style="width: 900px; height: 435px;" src="https://localhost:44356/{{car.imagePath}}" >
+        <img  class="d-block w-100" style="width: 900px; height: 435px;" src="{{apiUrl}}{{car.imagePath}}" >
       </div>
   </ng-template>
 </ngb-carousel>
