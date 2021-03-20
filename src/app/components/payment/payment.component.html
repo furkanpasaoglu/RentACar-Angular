@@ -15,11 +15,11 @@
           <div class="col-50">
             <h3>Fatura Adresi Bilgileri</h3>
             <label for="fname"><i class="fa fa-user"></i> Tam İsminiz</label>
-            <input type="text" id="fname" name="firstname" placeholder="John M. Doe">
+            <input type="text" id="fname" name="firstname" placeholder="Furkan Paşaoğlu">
             <label for="email"><i class="fa fa-envelope"></i> Email</label>
-            <input type="text" id="email" name="email" placeholder="john@example.com">
+            <input type="text" id="email" name="email" placeholder="furkan.pasaoglu@hotmail.com">
             <label for="adr"><i class="fa fa-address-card-o"></i> Adres</label>
-            <input type="text" id="adr" name="address" placeholder="542 W. 15th Street">
+            <input type="text" id="adr" name="address" placeholder="Kodlama.io">
             <label for="city"><i class="fa fa-institution"></i> Şehir</label>
             <input type="text" id="city" name="city" placeholder="Şehir">
 
@@ -52,7 +52,7 @@
             <label for="ccnum">Kredi Kartı Numarası</label>
             <input type="text" formControlName="cardNumber"
                    [(ngModel)]="fakeCreditCard.cardNumber" id="ccnum"
-                   name="cardnumber" placeholder="1111-2222-3333-4444">
+                   name="cardnumber" placeholder="1111222233334444">
             <div  class="alert alert-danger"
                   *ngIf="rentalForm.get('cardNumber').hasError('required') &&
                   rentalForm.get('cardNumber').dirty">Kart Numarası Zorunludur</div>
