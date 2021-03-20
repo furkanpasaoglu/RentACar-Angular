@@ -9,11 +9,11 @@ import {environment} from '../../environments/environment';
   providedIn: 'root'
 })
 export class ColorService {
-  apiUrl =  environment.apiUrl + 'colors'
+  apiUrl =  environment.apiUrl
 
   constructor(private httpClient:HttpClient) { }
 
   getColors():Observable<ListResponseModel<Color>>{
-    return this.httpClient.get<ListResponseModel<Color>>(this.apiUrl)
+    return this.httpClient.get<ListResponseModel<Color>>(this.apiUrl+ 'colors')
   }
 }

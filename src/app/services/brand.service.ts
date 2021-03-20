@@ -9,12 +9,12 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class BrandService {
-  apiUrl = environment.apiUrl + 'brands/';
+  apiUrl = environment.apiUrl
 
   constructor(private httpClient:HttpClient) { }
 
   getBrands():Observable<ListResponseModel<Brand>>{
 
-    return this.httpClient.get<ListResponseModel<Brand>>(this.apiUrl);
+    return this.httpClient.get<ListResponseModel<Brand>>(this.apiUrl+ 'brands/');
   }
 }

@@ -9,11 +9,11 @@ import {environment} from '../../environments/environment';
   providedIn: 'root'
 })
 export class CustomerService {
-  apiUrl = environment.apiUrl + 'customers'
+  apiUrl = environment.apiUrl
 
   constructor(private httpClient:HttpClient) { }
 
   getCustomers():Observable<ListResponseModel<Customer>>{
-    return this.httpClient.get<ListResponseModel<Customer>>(this.apiUrl);
+    return this.httpClient.get<ListResponseModel<Customer>>(this.apiUrl+ 'customers');
   }
 }

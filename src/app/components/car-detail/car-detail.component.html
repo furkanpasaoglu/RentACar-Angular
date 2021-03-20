@@ -17,7 +17,7 @@
     <p class="card-text"><b>Renk:</b>{{car.colorName}}</p>
     <p class="card-text"><b>Yıl:</b>{{car.modelYear}}</p>
     <p class="card-text"><b>Fiyat:</b> {{car.dailyPrice}} <fa-icon [icon]="faLira"></fa-icon></p>
-    <a href="#" class="btn btn-primary">Kirala</a>
+    <a (click)="addCart(car)" class="btn btn-primary">Kirala</a>
   </div>
 </div>
 

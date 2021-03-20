@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Color } from 'src/app/models/color';
 import { ColorService } from 'src/app/services/color.service';
+import {Filters} from '../../models/filters';
 
 @Component({
   selector: 'app-color',
@@ -8,42 +9,35 @@ import { ColorService } from 'src/app/services/color.service';
   styleUrls: ['./color.component.css']
 })
 export class ColorComponent implements OnInit {
-  colors:Color[] = [];
-  title = "Color List";
-  currentColor : Color;
 
-  constructor(private colorService:ColorService) { }
+  colors: Color[] = [];
+  dataLoaded = false;
+  error = '';
+  currentColor: Color;
+  allColor?: Color;
+  Filters = { brandId: '', colorId: '' };
+
+  constructor(private colorService: ColorService) {
+  }
 
   ngOnInit(): void {
     this.getColors();
   }
 
-  getColors(){
-    this.colorService.getColors().subscribe((response)=>{
+  getColors() {
+    this.colorService.getColors().subscribe(response => {
       this.colors = response.data;
+      this.dataLoaded = true;
+    }, error=>{
+      this.error = error.name;
     })
   }
-
-  setCurrentColor(color:Color){//yazmasanda olur type safe
-    this.currentColor = color;
+  setCurrentColor() {
+    this.currentColor !== undefined
+      ? (Filters.colorId = this.currentColor.colorId.toString())
+      : (Filters.colorId = '');
   }
-
-  getCurrentColorClass(color:Color){
-    if(color == this.currentColor){
-      return "list-group-item active"
-    }
-    else{
-      return "list-group-item"
-    }
+  allColorsSelected() {
+    return this.currentColor == undefined ? true : false;
   }
-
-  getAllColorClass(){
-    if(!this.currentColor){
-      return "list-group-item active"
-    }
-    else{
-      return "list-group-item"
-    }
-  }
-
 }
