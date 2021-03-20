@@ -1,0 +1,70 @@
+
+<div class="container" >
+  <div class="card shopping-cart">
+    <div class="card-header bg-dark text-light">
+      <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+      Sepetiniz
+    </div>
+    <div class="card-body" *ngFor="let cartItem of cartItems">
+      <!-- PRODUCT -->
+      <div class="row">
+        <div class="col-12 col-sm-12 col-md-2 text-center">
+          <img class="img-responsive" src="{{baseUrl}}/{{cartItem.car.imagePath}}" alt="prewiew" width="120" height="80">
+        </div>
+        <div class="col-12 text-sm-center col-sm-12 text-md-left col-md-6">
+          <h4 class="product-name"><strong>{{cartItem.car.brandName}}</strong></h4>
+          <h4>
+            <small>{{cartItem.car.description}}</small>
+          </h4>
+        </div>
+        <div class="col-12 col-sm-12 text-sm-center col-md-4 text-md-right row">
+          <div class="col-3 col-sm-3 col-md-6 text-md-right" style="padding-top: 9px">
+            <h6><strong>{{cartItem.car.dailyPrice}} TL</strong></h6>
+          </div>
+          <div class="col-4 col-sm-4 col-md-4" >
+            <div class="col-xs-4">
+              <input type="text" disabled class="form-control input-sm" value="1">
+            </div>
+          </div>
+          <div class="col-2 col-sm-2 col-md-2 text-right">
+            <button (click)="removeFromCart(cartItem.car)" class="btn btn-outline-danger btn-xs">
+              <i class="fa fa-trash" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <!-- END PRODUCT -->
+      <div style="background-color: transparent">
+        <div class="coupon col-md-5 col-sm-5 no-padding-left pull-left">
+          <div class="row">
+            <div class="col-6">
+              <form class="form-inline">
+                <div class="form-group">
+                  <div class="input-group">
+                    <input class="form-control" placeholder="yyyy-mm-dd"
+                           name="dp" [(ngModel)]="model" ngbDatepicker
+                           #d="ngbDatepicker" (ngModelChange)="calculatePrice()">
+                    <div class="input-group-append">
+                      <button class="icon-calendar" (click)="d.toggle()" type="button">Kiralama Tarihi</button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <br>
+        </div>
+        <div class="pull-right" style="margin-top: 50px;">
+          <button (click)="createRental()"
+                  routerLink="/payment/"
+                  type="button" class="btn btn-success pull-right"> Ödemeye Git
+          </button>
+          <div class="pull-right" style="margin: 5px">
+            Toplam Fiyat: <b>{{totalPrice}} TL</b>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
