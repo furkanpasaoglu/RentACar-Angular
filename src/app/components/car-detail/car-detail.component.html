@@ -17,7 +17,10 @@
       <p class="card-text"><b>Renk:</b>{{car.colorName}}</p>
       <p class="card-text"><b>Yıl:</b>{{car.modelYear}}</p>
       <p class="card-text"><b>Fiyat:</b> {{car.dailyPrice}} <fa-icon [icon]="faLira"></fa-icon></p>
-      <a (click)="addCart(car)" class="btn btn-primary">Kirala</a>
+      <a (click)="addCart(car)" class="btn btn-primary" style="margin-right: 5px;">Kirala</a>
+      <a routerLink="/car/update/{{car.id}}" class="btn btn-primary"style="margin-right: 5px;">Arabayı Düzenle</a>
+      <a routerLink="/color/update/{{car.colorId}}" class="btn btn-primary"style="margin-right: 5px;">Rengi Düzenle</a>
+      <a routerLink="/brand/update/{{car.brandId}}" class="btn btn-primary">Markayı Düzenle</a>
     </div>
   </div>
 </div>

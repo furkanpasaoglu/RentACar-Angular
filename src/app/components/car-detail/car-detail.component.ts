@@ -22,7 +22,7 @@ export class CarDetailComponent implements OnInit {
 
   constructor(private carService:CarService,private activatedRoute:ActivatedRoute,
               private cartService:CartService, private rentalService: RentalService,
-              private router: Router,private toastrService:ToastrService) { }
+              private router: Router) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {

@@ -15,7 +15,7 @@ import {Color} from '../../models/color';
 })
 export class CarAddComponent implements OnInit {
 
-  caraddForm:FormGroup;
+  carAddForm:FormGroup;
   brands:Brand[];
   colors:Color[];
 
@@ -29,7 +29,7 @@ export class CarAddComponent implements OnInit {
   }
 
   createCarAddForm(){
-    this.caraddForm=this.formBuilder.group({
+    this.carAddForm=this.formBuilder.group({
       brandId:["",Validators.required],
       colorId:["",Validators.required],
       modelYear:["",Validators.required],
@@ -51,8 +51,8 @@ export class CarAddComponent implements OnInit {
   }
 
   addToCar(){
-    if(this.caraddForm.valid){
-      let carModel = Object.assign({},this.caraddForm.value);
+    if(this.carAddForm.valid){
+      let carModel = Object.assign({},this.carAddForm.value);
       this.carService.addToCar(carModel).subscribe(response=>{
         this.toastrService.success(response.message,"Başarılı!")
       },responseError=>{

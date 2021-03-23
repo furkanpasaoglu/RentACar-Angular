@@ -9,7 +9,7 @@ import {ToastrService} from 'ngx-toastr';
   styleUrls: ['./brand-add.component.css']
 })
 export class BrandAddComponent implements OnInit {
-  brandaddForm:FormGroup;
+  brandAddForm:FormGroup;
 
   constructor(private brandService:BrandService,private formBuilder:FormBuilder,private toastrService:ToastrService) { }
 
@@ -18,14 +18,14 @@ export class BrandAddComponent implements OnInit {
   }
 
   createCarAddForm(){
-    this.brandaddForm = this.formBuilder.group({
+    this.brandAddForm = this.formBuilder.group({
       brandName:["",Validators.required]
     })
   }
 
   addToBrand(){
-    if(this.brandaddForm.valid){
-      let brandModel = Object.assign(this.brandaddForm.value);
+    if(this.brandAddForm.valid){
+      let brandModel = Object.assign(this.brandAddForm.value);
       this.brandService.addToBrand(brandModel).subscribe(response=>{
         this.toastrService.success(response.message,"Başarılı!")
       },responseError=>{

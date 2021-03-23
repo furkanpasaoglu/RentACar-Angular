@@ -22,4 +22,12 @@ export class BrandService {
     return this.httpClient.post<ResponseModel>(this.apiUrl+ 'brands/add',brand);
   }
 
+  updateBrand(brand: Brand): Observable<ResponseModel> {
+    return this.httpClient.post<ResponseModel>(this.apiUrl + 'brands/update', brand);
+  }
+
+  getBrandById(id: number): Observable<ListResponseModel<Brand>> {
+    return this.httpClient.get<ListResponseModel<Brand>>(this.apiUrl + 'brands/id?id='+ id);
+  }
+
 }
