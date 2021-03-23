@@ -1,0 +1,59 @@
+<div class="content">
+  <div class="col-md-12">
+    <div class="card">
+
+      <div class="card-header">
+        <h5 class="title">Marka Ekle</h5>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="caraddForm">
+
+          <div class="mb-3">
+            <div class="form-group">
+              <label>Marka Seçiniz</label>
+              <select class="form-control" formControlName="brandId">
+                <option *ngFor="let brand of brands" [ngValue]="brand.brandId">{{brand.brandName}}</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <div class="form-group">
+              <label>Renk Seçiniz</label>
+              <select class="form-control" formControlName="colorId">
+                <option *ngFor="let color of colors" [ngValue]="color.colorId">{{color.colorName}}</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <div class="form-group">
+              <label for="modelYear">Model Yılı</label>
+              <input type="number" id="modelYear" formControlName="modelYear" class="form-control" placeholder="Yıl"/>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <div class="form-group">
+              <label for="dailyPrice">Günlük Fiyatı</label>
+              <input type="number" id="dailyPrice" formControlName="dailyPrice" class="form-control" placeholder="Fiyatı"/>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <div class="form-group">
+              <label for="dailyPrice">Bilgi</label>
+              <input type="text" id="description" formControlName="description" class="form-control" placeholder="Detay"/>
+            </div>
+          </div>
+
+
+          <div class="card-footer">
+            <button class="btn btn-fill btn-primary" (click)="addToCar()" >Ekle</button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

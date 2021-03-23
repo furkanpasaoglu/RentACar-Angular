@@ -2,38 +2,41 @@
   <span class="visually-hidden">Loading...</span>
 </div>
 
-<div class="mb-3">
-  <label for="filterText" class="form-group">Araba Markası bul</label>
-  <input type="text"  [(ngModel)]="filterText" (ngModelChange)="changeFilterTextSize(filterText)" class="form-control" id="filterText" placeholder="Arama ifadesi giriniz">
+<div class="card" style="margin-bottom: 15px;">
+  <div class="card-body">
+    <label for="filterText" class="form-group">Araba Markası bul</label>
+    <input type="text"  [(ngModel)]="filterText" (ngModelChange)="changeFilterTextSize(filterText)" class="form-control" id="filterText" placeholder="Arama ifadesi giriniz">
+  </div>
 </div>
 
-<div *ngIf="filterText.length>0" class="alert alert-success">
-  {{filterText}} aradınız.
-</div>
+<div class="card" style="margin-bottom: 30px;">
+  <div class="card-body">
+    <div *ngIf="filterText.length>0" class="alert alert-success">
+      {{filterText}} aradınız.
+    </div>
+    <div class="row" *ngIf="dataLoaded==true">
+      <div  class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3" *ngFor="let car of cars | filterPipe:filterText">
+        <div class="card mb-3 mr-3">
+          <img class="card-img-top" src="{{apiUrl}}{{car.imagePath}}" width="318px" height="200">
+          <div class="card-body">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item"><b>Marka:</b><span style="float: right;">{{car.brandName}}</span></li>
+              <li class="list-group-item"><b>Renk:</b><span style="float: right;">{{car.colorName}}</span></li>
+              <li class="list-group-item"><b>Model Yılı:</b> <span style="float: right;">{{car.modelYear}}</span></li>
+              <li class="list-group-item"><b>Fiyat:</b><span style="float: right;">{{car.dailyPrice}} <fa-icon [icon]="faLira"></fa-icon></span></li>
+            </ul>
+          </div>
 
-<div class="row" *ngIf="dataLoaded==true">
-  <div  class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3" *ngFor="let car of cars | filterPipe:filterText">
-    <div class="card mb-3 mr-3">
-      <img class="card-img-top" src="{{apiUrl}}{{car.imagePath}}" width="318px" height="200">
-      <div class="card-body">
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item"><b>Marka:</b><span style="float: right;">{{car.brandName}}</span></li>
-          <li class="list-group-item"><b>Renk:</b><span style="float: right;">{{car.colorName}}</span></li>
-          <li class="list-group-item"><b>Model Yılı:</b> <span style="float: right;">{{car.modelYear}}</span></li>
-          <li class="list-group-item"><b>Fiyat:</b><span style="float: right;">{{car.dailyPrice}} <fa-icon [icon]="faLira"></fa-icon></span></li>
-        </ul>
-      </div>
+            <div class="card-footer bg-transparent">
+              <button routerLink="/car/details/{{car.id}}" type="button" class="btn btn-primary mb-2">Detaylar</button>
+              <button (click)="addToCart(car)" class="btn btn-primary fa-pull-right ">Kirala</button>
+            </div>
 
-        <div class="card-footer bg-transparent">
-          <button routerLink="/car/details/{{car.id}}" type="button" class="btn btn-primary mb-2">Detaylar</button>
-          <button (click)="addToCart(car)" class="btn btn-primary fa-pull-right ">Kirala</button>
         </div>
-
+      </div>
     </div>
   </div>
-
 </div>
-
 
 
 <!--

@@ -1,24 +1,24 @@
-<ngb-carousel>
-  <ng-template ngbSlide *ngFor ="let car of carDetails">
-      <div class="picsum-img-wrapper">
-        <img  class="d-block w-100" style="width: 900px; height: 435px;" src="{{apiUrl}}{{car.imagePath}}" >
-      </div>
-  </ng-template>
-</ngb-carousel>
-
-<br>
-
-<div class="card"  *ngFor ="let car of carDetails; let i = index">
-  <div class="card-body" *ngIf="i<1">
-    <h5 class="card-title">{{car.brandName}} {{car.description}}</h5>
-    <hr>
-    <p class="card-text"><b>Marka:</b> {{car.brandName}}</p>
-    <p class="card-text"><b>Model:</b> {{car.description}}</p>
-    <p class="card-text"><b>Renk:</b>{{car.colorName}}</p>
-    <p class="card-text"><b>Yıl:</b>{{car.modelYear}}</p>
-    <p class="card-text"><b>Fiyat:</b> {{car.dailyPrice}} <fa-icon [icon]="faLira"></fa-icon></p>
-    <a (click)="addCart(car)" class="btn btn-primary">Kirala</a>
+<div class="card" style="margin-bottom: 15px;">
+  <div class="card-body">
+    <ngb-carousel>
+      <ng-template ngbSlide *ngFor ="let car of carDetails">
+        <div class="picsum-img-wrapper">
+          <img  class="d-block w-100" style="width: 900px; height: 435px;" src="{{apiUrl}}{{car.imagePath}}" >
+        </div>
+      </ng-template>
+    </ngb-carousel>
+  </div>
+  <div *ngFor ="let car of carDetails; let i = index">
+    <div class="card-footer" *ngIf="i<1">
+      <h5 class="card-title">{{car.brandName}} {{car.description}}</h5>
+      <hr>
+      <p class="card-text"><b>Marka:</b> {{car.brandName}}</p>
+      <p class="card-text"><b>Model:</b> {{car.description}}</p>
+      <p class="card-text"><b>Renk:</b>{{car.colorName}}</p>
+      <p class="card-text"><b>Yıl:</b>{{car.modelYear}}</p>
+      <p class="card-text"><b>Fiyat:</b> {{car.dailyPrice}} <fa-icon [icon]="faLira"></fa-icon></p>
+      <a (click)="addCart(car)" class="btn btn-primary">Kirala</a>
+    </div>
   </div>
 </div>
 
-<br>

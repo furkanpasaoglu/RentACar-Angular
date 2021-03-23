@@ -21,6 +21,9 @@ import { FilterPipePipe } from './pipes/filter-pipe.pipe';
 import { CartComponent } from './components/cart/cart.component';
 import { PaymentComponent } from './components/payment/payment.component';
 import { FilterComponent } from './components/filter/filter.component';
+import { CarAddComponent } from './components/car-add/car-add.component';
+import { BrandAddComponent } from './components/brand-add/brand-add.component';
+import { ColorAddComponent } from './components/color-add/color-add.component';
 
 
 @NgModule({
@@ -36,7 +39,10 @@ import { FilterComponent } from './components/filter/filter.component';
     FilterPipePipe,
     CartComponent,
     PaymentComponent,
-    FilterComponent
+    FilterComponent,
+    CarAddComponent,
+    BrandAddComponent,
+    ColorAddComponent,
   ],
   imports: [
     BrowserModule,

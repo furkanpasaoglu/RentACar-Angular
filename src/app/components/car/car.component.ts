@@ -8,7 +8,6 @@ import {ToastrService} from 'ngx-toastr';
 import {CartService} from '../../services/cart.service';
 import {RentalService} from '../../services/rental.service';
 import {Rental} from '../../models/rental';
-import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-car',
