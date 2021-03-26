@@ -7,7 +7,11 @@ import {environment} from '../../../environments/environment';
 import {CartService} from '../../services/cart.service';
 import {RentalService} from '../../services/rental.service';
 import {Rental} from '../../models/rental';
+import {AuthService} from '../../services/auth.service';
 import {ToastrService} from 'ngx-toastr';
+import {UserService} from '../../services/user.service';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {LocalStorageService} from '../../services/local-storage.service';
 
 @Component({
   selector: 'app-car-detail',
@@ -19,10 +23,18 @@ export class CarDetailComponent implements OnInit {
   faLira = faLiraSign;
   apiUrl = environment.baseUrl;
   rentalDetail: Rental[];
+  userFindeksForm: FormGroup;
+  findeks:number =0;
 
   constructor(private carService:CarService,private activatedRoute:ActivatedRoute,
               private cartService:CartService, private rentalService: RentalService,
-              private router: Router) { }
+              private router: Router,
+              private authService:AuthService,
+              private toastrService:ToastrService,
+              private userService:UserService,
+              private formBuilder:FormBuilder,
+              private localStorageService:LocalStorageService
+              ) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
@@ -30,6 +42,7 @@ export class CarDetailComponent implements OnInit {
         this.getCarDetail(params["carId"]);
       }
     });
+    this.createUserFindeksForm();
   }
 
   getCarDetail(carId:number){
@@ -39,13 +52,43 @@ export class CarDetailComponent implements OnInit {
   }
 
   addCart(car:Car){
-    this.rentalService.getRentalByCarId(car.id).subscribe(response => {
-      this.rentalDetail = response.data;
-    });
-    if (this.cartService.list().length > 0) {
+    if(this.authService.isAuthenticated()){
+      this.rentalService.getRentalByCarId(car.id).subscribe(response => {
+        this.rentalDetail = response.data;
+      });
+      if (this.cartService.list().length > 0) {
+        this.router.navigate(['/cart'])
+      }
+      this.cartService.addToCart(car);
       this.router.navigate(['/cart'])
+    }else{
+      this.toastrService.info("Lütfen Giriş Yapınız")
     }
-    this.cartService.addToCart(car);
-    this.router.navigate(['/cart'])
   }
+
+  createUserFindeksForm() {
+    this.userFindeksForm = this.formBuilder.group({
+      tc: ['', Validators.required],
+      dateYear: ['', Validators.required],
+    });
+  }
+
+  getUserFindeks() {
+    if (this.userFindeksForm.valid) {
+      if(parseInt(this.localStorageService.get('findeks'))>0){
+        this.toastrService.info('Findeks Puanınız: ' + this.localStorageService.get('findeks'))
+      }else{
+        let userFindeksModel = Object.assign({}, this.userFindeksForm.value);
+        this.userService.fakeFindeks(userFindeksModel).subscribe(response => {
+          this.findeks = response.data.userFindeks;
+          this.localStorageService.set('findeks',this.findeks.toString())
+          this.toastrService.info('Findeks Hesaplaması Başarılı. Findeks Puanınız: ' + this.findeks);
+        });
+      }
+    }
+  }
+
+
+
+
 }

@@ -1,27 +1,79 @@
-<div class="card" style="margin-bottom: 15px;">
-  <div class="card-body">
-    <ngb-carousel>
-      <ng-template ngbSlide *ngFor ="let car of carDetails">
-        <div class="picsum-img-wrapper">
-          <img  class="d-block w-100" style="width: 900px; height: 435px;" src="{{apiUrl}}{{car.imagePath}}" >
+<div class="container">
+    <div class="row">
+      <div class="col-md-3">
+
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="card" style="width: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title">Findeks Hesaplama</h5>
+                <Form [formGroup]="userFindeksForm">
+                  <div class="mb-3">
+                    <div class="form-group">
+                      <label>Tc Kimlik Numaranız</label>
+                      <input  class="form-control" type="text" formControlName="tc">
+                    </div>
+                  </div>
+                  <div class="mb-3">
+                    <div class="form-group">
+                      <label>Doğum Yılınız</label>
+                      <input class="form-control" type="text" formControlName="dateYear">
+                    </div>
+                  </div>
+                  <button class="btn btn-primary" (click)="getUserFindeks()">Puanımı Hesapla</button>
+                </Form>
+
+              </div>
+            </div>
+          </div>
         </div>
-      </ng-template>
-    </ngb-carousel>
-  </div>
-  <div *ngFor ="let car of carDetails; let i = index">
-    <div class="card-footer" *ngIf="i<1">
-      <h5 class="card-title">{{car.brandName}} {{car.description}}</h5>
-      <hr>
-      <p class="card-text"><b>Marka:</b> {{car.brandName}}</p>
-      <p class="card-text"><b>Model:</b> {{car.description}}</p>
-      <p class="card-text"><b>Renk:</b>{{car.colorName}}</p>
-      <p class="card-text"><b>Yıl:</b>{{car.modelYear}}</p>
-      <p class="card-text"><b>Fiyat:</b> {{car.dailyPrice}} <fa-icon [icon]="faLira"></fa-icon></p>
-      <a (click)="addCart(car)" class="btn btn-primary" style="margin-right: 5px;">Kirala</a>
-      <a routerLink="/car/update/{{car.id}}" class="btn btn-primary"style="margin-right: 5px;">Arabayı Düzenle</a>
-      <a routerLink="/color/update/{{car.colorId}}" class="btn btn-primary"style="margin-right: 5px;">Rengi Düzenle</a>
-      <a routerLink="/brand/update/{{car.brandId}}" class="btn btn-primary">Markayı Düzenle</a>
-    </div>
-  </div>
+
+      </div>
+
+      <div class="col-md-9">
+        <div class="row justify-content-center">
+
+        <div class="card" style="margin-bottom: 15px;">
+          <div class="card-body">
+            <ngb-carousel>
+              <ng-template ngbSlide *ngFor ="let car of carDetails">
+                <div class="picsum-img-wrapper" style="width: 900px; height: 435px;">
+                  <img  class="d-block w-100" style="width: 900px; height: 435px;" src="{{apiUrl}}{{car.imagePath}}" >
+                </div>
+              </ng-template>
+            </ngb-carousel>
+          </div>
+
+          <div *ngFor ="let car of carDetails; let i = index">
+            <div *ngIf="i<1">
+              <div class="card-body">
+                <p class="card-text"><b>Marka:</b> {{car.brandName}}</p>
+                <hr>
+                <p class="card-text"><b>Model:</b> {{car.description}}</p>
+                <hr>
+                <p class="card-text"><b>Renk:</b>{{car.colorName}}</p>
+                <hr>
+                <p class="card-text"><b>Yıl:</b>{{car.modelYear}}</p>
+                <hr>
+                <p class="card-text"><b>Fiyat:</b> {{car.dailyPrice}} <fa-icon [icon]="faLira"></fa-icon></p>
+              </div>
+              <div class="card-footer">
+                <a (click)="addCart(car)" class="btn btn-primary" style="margin-right: 5px;">Kirala</a>
+                <a routerLink="/car/update/{{car.id}}" class="btn btn-primary"style="margin-right: 5px;">Arabayı Düzenle</a>
+                <a routerLink="/color/update/{{car.colorId}}" class="btn btn-primary"style="margin-right: 5px;">Rengi Düzenle</a>
+                <a routerLink="/brand/update/{{car.brandId}}" class="btn btn-primary">Markayı Düzenle</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      </div>
+      </div>
+
 </div>
+
+
+
+
 

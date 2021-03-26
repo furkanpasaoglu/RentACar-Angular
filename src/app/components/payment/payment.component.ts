@@ -7,6 +7,7 @@ import {FakeCreditCard} from '../../models/fakeCreditCard';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {RentalService} from '../../services/rental.service';
 import {ToastrService} from 'ngx-toastr';
+import {LocalStorageService} from '../../services/local-storage.service';
 
 @Component({
   selector: 'app-payment',
@@ -14,13 +15,6 @@ import {ToastrService} from 'ngx-toastr';
   styleUrls: ['./payment.component.css']
 })
 export class PaymentComponent implements OnInit {
-
-  totalPrice: number = 0;
-  returnDate: Date;
-  carId: number;
-  year: number;
-  month: number;
-  day: number;
   rental: RentalDetail = new RentalDetail();
   fakeCreditCard: FakeCreditCard = new FakeCreditCard();
   rentalForm: FormGroup;
@@ -28,7 +22,8 @@ export class PaymentComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute,
               private rentalService: RentalService,
               private toastrService: ToastrService,
-              private formBuilder: FormBuilder) {
+              private formBuilder: FormBuilder,
+              private localStorageService:LocalStorageService) {
   }
 
   ngOnInit(): void {
@@ -38,6 +33,20 @@ export class PaymentComponent implements OnInit {
         this.rental = JSON.parse(params['myrental']);
       }
     });
+
+    var cardHolderName = this.localStorageService.get('HolderName');
+    var expirationYear = this.localStorageService.get('ExpirationYear');
+    var expirationMonth = this.localStorageService.get('ExpirationMonth');
+    var cardNumber = this.localStorageService.get('CartNumber');
+    var cvv = this.localStorageService.get('Cvv');
+    if (cardHolderName != null && expirationMonth != null && expirationYear != null && cardNumber != null && cvv != null) {
+      this.fakeCreditCard.cardHolderName = cardHolderName;
+      this.fakeCreditCard.expirationYear = parseInt(expirationYear);
+      this.fakeCreditCard.expirationMonth = parseInt(expirationMonth);
+      this.fakeCreditCard.cardNumber = cardNumber;
+      this.fakeCreditCard.cvv = cvv;
+    }
+
   }
 
   createForm() {
@@ -47,20 +56,29 @@ export class PaymentComponent implements OnInit {
       expirationMonth: ['', Validators.required],
       expirationYear: ['', Validators.required],
       cvv: ['', Validators.required]
-
-
-      // cardHolderName: ['', Validators.required, Validators.maxLength(50)],
-      // cardNumber: ['', Validators.required, Validators.maxLength(16), Validators.minLength(16)],
-      // expirationMonth: ['', Validators.required, Validators.min(1), Validators.max(12)],
-      // expirationYear: ['', Validators.required, Validators.min(new Date().getFullYear()),
-      //   Validators.max(new Date().getUTCFullYear() + 30)],
-      // cvv: ['', Validators.required,Validators.minLength(3),Validators.maxLength(3)],
     });
   }
 
   addRental(rental: RentalDetail, fakeCreditCard: FakeCreditCard) {
-    this.rentalService.addRental(rental, fakeCreditCard).subscribe(response => {
-      this.toastrService.success('Araç kiralandı');
-    });
+     this.rentalService.addRental(rental, fakeCreditCard).subscribe(response => {
+       this.toastrService.success('Araç kiralandı');
+     });
+  }
+
+  addCreditCart(fakeCreditCard: FakeCreditCard){
+    this.localStorageService.set('HolderName',fakeCreditCard.cardHolderName)
+    this.localStorageService.set('CartNumber',fakeCreditCard.cardNumber)
+    this.localStorageService.set('ExpirationYear',fakeCreditCard.expirationYear.toString())
+    this.localStorageService.set('ExpirationMonth',fakeCreditCard.expirationMonth.toString())
+    this.localStorageService.set('Cvv',fakeCreditCard.cvv)
+    this.toastrService.success("Başarıyla Kartınız Kaydedildi")
+  }
+
+  getCreditCart(){
+     this.localStorageService.get('HolderName');
+     this.localStorageService.get('CartNumber');
+     this.localStorageService.get('ExpirationYear');
+     this.localStorageService.get('ExpirationMonth');
+     this.localStorageService.get('Cvv');
   }
 }

@@ -8,6 +8,7 @@ import {ToastrService} from 'ngx-toastr';
 import {CartService} from '../../services/cart.service';
 import {RentalService} from '../../services/rental.service';
 import {Rental} from '../../models/rental';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-car',
@@ -26,7 +27,9 @@ export class CarComponent implements OnInit {
               private activatedRoute:ActivatedRoute,
               private toastrService:ToastrService,
               private cartService:CartService,
-              private rentalService:RentalService,private router: Router
+              private rentalService:RentalService,
+              private router: Router,
+              private authService:AuthService
               ) { }
 
   ngOnInit(): void {
@@ -74,13 +77,18 @@ export class CarComponent implements OnInit {
   }
 
   addToCart(car:Car){
-    this.rentalService.getRentalByCarId(car.id).subscribe(response => {
-      this.rentalDetail = response.data;
-    });
-    if (this.cartService.list().length > 0) {
+    if(this.authService.isAuthenticated()){
+      this.rentalService.getRentalByCarId(car.id).subscribe(response => {
+        this.rentalDetail = response.data;
+      });
+      if (this.cartService.list().length > 0) {
+        this.router.navigate(['/cart'])
+      }
+      this.cartService.addToCart(car);
       this.router.navigate(['/cart'])
+    }else{
+      this.toastrService.info("Lütfen Giriş Yapınız")
     }
-    this.cartService.addToCart(car);
-    this.router.navigate(['/cart'])
+
   }
 }
