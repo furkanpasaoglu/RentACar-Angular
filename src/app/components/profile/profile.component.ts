@@ -11,7 +11,6 @@ import {User} from '../../models/user';
 })
 export class ProfileComponent implements OnInit {
   profileForm:FormGroup
-  profileForm2:FormGroup
   email:string;
   password:FormControl
   user:User = new User();
@@ -28,11 +27,12 @@ export class ProfileComponent implements OnInit {
 
   createProfileAddForm(){
     this.profileForm=this.formBuilder.group({
-      id:[this.user.id],
+      id:this.user.id,
       firstName:["",Validators.required],
       lastName:["",Validators.required],
       email:["",Validators.required],
       password:["",Validators.required],
+      status:true
     })
   }
 
@@ -40,7 +40,7 @@ export class ProfileComponent implements OnInit {
       if(this.email){
         this.userService.getByEmail(this.email).subscribe(response=>{
             this.user = response;
-            if(response.status == true){
+            if(response.status){
               this.status = "Aktif"
             }else{
               this.status = "Aktif Değil"

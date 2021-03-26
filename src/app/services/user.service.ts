@@ -27,7 +27,7 @@ export class UserService {
         'firstName': user.firstName,
         'lastName': user.lastName,
         'email': user.email,
-        'status':true
+        'status':user.status
       },
       password:user.password
     });
