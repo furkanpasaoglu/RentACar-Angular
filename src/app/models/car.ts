@@ -10,4 +10,5 @@ export interface Car{
     imageId:number;
     imagePath:string;
     date:Date;
+    findeksScore:number;
 }

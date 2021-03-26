@@ -24,7 +24,8 @@ export class CarDetailComponent implements OnInit {
   apiUrl = environment.baseUrl;
   rentalDetail: Rental[];
   userFindeksForm: FormGroup;
-  findeks:number =0;
+  findeks:number;
+  carFindeks:number
 
   constructor(private carService:CarService,private activatedRoute:ActivatedRoute,
               private cartService:CartService, private rentalService: RentalService,
@@ -43,24 +44,37 @@ export class CarDetailComponent implements OnInit {
       }
     });
     this.createUserFindeksForm();
+
   }
 
   getCarDetail(carId:number){
     this.carService.getCarDetail(carId).subscribe(response=>{
       this.carDetails = response.data
+      this.carFindeks = this.carDetails[0].findeksScore;
     })
   }
 
   addCart(car:Car){
     if(this.authService.isAuthenticated()){
-      this.rentalService.getRentalByCarId(car.id).subscribe(response => {
-        this.rentalDetail = response.data;
-      });
-      if (this.cartService.list().length > 0) {
-        this.router.navigate(['/cart'])
+      console.log(this.carFindeks,this.localStorageService.get('findeks'))
+      if(parseInt(this.localStorageService.get('findeks')) !=undefined || parseInt(this.localStorageService.get('findeks'))!=null){
+        if(this.carFindeks<parseInt(this.localStorageService.get('findeks')))
+        {
+          this.rentalService.getRentalByCarId(car.id).subscribe(response => {
+            this.rentalDetail = response.data;
+          });
+          if (this.cartService.list().length > 0) {
+            this.router.navigate(['/cart'])
+          }
+          this.cartService.addToCart(car);
+          this.router.navigate(['/cart'])
+        }else{
+          this.toastrService.error("Arabayı Kiralayamazsınız Findeks Puanınız yetmiyor.")
+        }
+      }else{
+        this.toastrService.info("Lütfen Findeks Puanınızı Hesaplayınız")
+
       }
-      this.cartService.addToCart(car);
-      this.router.navigate(['/cart'])
     }else{
       this.toastrService.info("Lütfen Giriş Yapınız")
     }

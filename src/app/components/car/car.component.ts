@@ -75,20 +75,4 @@ export class CarComponent implements OnInit {
       this.dataLoaded = true;
     })
   }
-
-  addToCart(car:Car){
-    if(this.authService.isAuthenticated()){
-      this.rentalService.getRentalByCarId(car.id).subscribe(response => {
-        this.rentalDetail = response.data;
-      });
-      if (this.cartService.list().length > 0) {
-        this.router.navigate(['/cart'])
-      }
-      this.cartService.addToCart(car);
-      this.router.navigate(['/cart'])
-    }else{
-      this.toastrService.info("Lütfen Giriş Yapınız")
-    }
-
-  }
 }
