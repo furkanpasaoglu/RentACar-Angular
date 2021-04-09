@@ -7,6 +7,7 @@ import {ColorService} from '../../services/color.service';
 import {ActivatedRoute} from '@angular/router';
 import {Color} from '../../models/color';
 import {Brand} from '../../models/brand';
+import {Car} from "../../models/car";
 
 @Component({
   selector: 'app-car-update',
@@ -18,17 +19,20 @@ export class CarUpdateComponent implements OnInit {
   brands: Brand[] = [];
   colors: Color[] = [];
   carId: number;
+  cars:Car[];
 
   constructor(private formBuilder: FormBuilder,
               private carService: CarService,
               private toastrService: ToastrService,
               private brandService: BrandService,
               private colorService: ColorService,
-              private activatedRoute: ActivatedRoute
-  ) {
-  }
+              private activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
+    this.load();
+  }
+
+  load(){
     this.activatedRoute.params.subscribe(params => {
       if (params['id']) {
         this.carId = parseInt(params['id']);
@@ -37,16 +41,18 @@ export class CarUpdateComponent implements OnInit {
     this.createCarUpdateForm();
     this.brandList();
     this.colorList();
+    this.getCarIdList();
   }
 
   createCarUpdateForm() {
     this.carUpdateForm = this.formBuilder.group({
-      id: [this.carId],
+      id:["",Validators.required],
       brandId: ['', Validators.required],
       colorId: ['', Validators.required],
       modelYear: ['', Validators.required],
       dailyPrice: ['', Validators.required],
-      description: ['', Validators.required]
+      description: ['', Validators.required],
+      modelName:['',Validators.required]
     });
   }
 
@@ -60,6 +66,12 @@ export class CarUpdateComponent implements OnInit {
     this.colorService.getColors().subscribe(response => {
       this.colors = response.data;
     });
+  }
+
+  getCarIdList(){
+    this.carService.getCars().subscribe(response=>{
+      this.cars = response.data
+    })
   }
 
   updateCar() {

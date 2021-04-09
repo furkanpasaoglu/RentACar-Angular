@@ -1,45 +1,48 @@
-<div class="row">
-<div class="col-md-3">
-  <app-filter></app-filter>
-</div>
-  <div class="col-md-9">
-  <div *ngIf="dataLoaded==false" class="spinner-border" role="status">
-    <span class="visually-hidden">Loading...</span>
-  </div>
-
-  <div class="card" style="margin-bottom: 15px;">
-    <div class="card-body">
-      <label for="filterText" class="form-group">Araba Markası bul</label>
-      <input type="text"  [(ngModel)]="filterText" (ngModelChange)="changeFilterTextSize(filterText)" class="form-control" id="filterText" placeholder="Arama ifadesi giriniz">
-    </div>
-  </div>
-
-  <div class="card" style="margin-bottom: 30px;">
-    <div class="card-body">
-      <div *ngIf="filterText.length>0" class="alert alert-success">
-        {{filterText}} aradınız.
+<app-navi></app-navi>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-3" style="margin-top: 20px;">
+        <app-filter></app-filter>
+        <div class="card" style="margin-bottom: 15px; margin-top: 20px;">
+          <div class="card-header text-center" for="filterText">Araba Markası bul</div>
+          <div class="card-body">
+            <input type="text"  [(ngModel)]="filterText" (ngModelChange)="changeFilterTextSize(filterText)" class="form-control" id="filterText" placeholder="Arama ifadesi giriniz">
+          </div>
+        </div>
       </div>
-      <div class="row" *ngIf="dataLoaded==true">
-        <div  class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3" *ngFor="let car of cars | filterPipe:filterText">
-          <div class="card mb-3 mr-3">
-            <img class="card-img-top" src="{{apiUrl}}{{car.imagePath}}" width="318px" height="200">
-            <div class="card-body">
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item"><b>Marka:</b><span style="float: right;">{{car.brandName}}</span></li>
-                <li class="list-group-item"><b>Renk:</b><span style="float: right;">{{car.colorName}}</span></li>
-                <li class="list-group-item"><b>Model Yılı:</b> <span style="float: right;">{{car.modelYear}}</span></li>
-                <li class="list-group-item"><b>Fiyat:</b><span style="float: right;">{{car.dailyPrice}} <fa-icon [icon]="faLira"></fa-icon></span></li>
-              </ul>
-            </div>
 
-            <div class="card-footer bg-transparent">
-              <button routerLink="/car/details/{{car.id}}" type="button" class="btn btn-primary mb-2" style="width: 100%">Detaylar</button>
+      <div class="col-md-9">
+        <div *ngIf="dataLoaded==false" class="spinner-border" role="status" style="margin-top: 35px; margin-left: 15px;">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="row" id="ads" *ngIf="dataLoaded==true">
+          <div  class="col-12 col-sm-11 col-md-9 col-lg-5 col-xl-4 " *ngFor="let car of cars | filterPipe:filterText">
+            <div class="card mb-4 mr-4">
+              <div class="card rounded" >
+                <div class="card-image">
+                  <span class="card-notify-badge">Yeni</span>
+                  <span class="card-notify-year">{{car.modelYear}}</span>
+                  <img class="img-fluid" src="{{apiUrl}}{{car.imagePath}}" style="width: 100%;height: 173px;" />
+                </div>
+                <div class="card-image-overlay m-auto">
+                  <span class="card-detail-badge">Sıfır</span>
+                  <span class="card-detail-badge">{{car.dailyPrice}} <fa-icon [icon]="faLira"></fa-icon></span>
+                  <span class="card-detail-badge">{{car.colorName}}</span>
+                </div>
+                <div class="card-body text-center">
+                  <div class="ad-title text-center">
+                    <h5>{{car.brandName}} {{car.modelName}}</h5>
+                  </div>
+                  <button type="button" routerLink="/car/details/{{car.id}}" class="ad-btn" style="border-radius: 80px; width: 50%">Detaylar</button>
+                </div>
+              </div>
             </div>
-
+            <br>
           </div>
         </div>
       </div>
     </div>
   </div>
-  </div>
-</div>
+
+
+

@@ -6,6 +6,10 @@ import {Observable} from 'rxjs';
 import {SingleResponseModel} from '../models/singleResponseModel';
 import {TokenModel} from '../models/tokenModel';
 import {RegisterModel} from '../models/registerModel';
+import {Claims} from "../models/claims";
+import {ListResponseModel} from "../models/listResponseModel";
+import {UserService} from "./user.service";
+import {LocalStorageService} from "./local-storage.service";
 
 @Injectable({
   providedIn: 'root'
@@ -30,5 +34,11 @@ export class AuthService {
       return false;
     }
   }
+
+  getClaims(id:number):Observable<ListResponseModel<Claims>>{
+    return this.httpClient.get<ListResponseModel<Claims>>(this.apiUrl + 'users/claims?id='+id)
+  }
+
+
 
 }

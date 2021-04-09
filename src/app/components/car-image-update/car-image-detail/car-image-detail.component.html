@@ -1,0 +1,26 @@
+<div class="d-flex" id="wrapper">
+  <app-sidebar></app-sidebar>
+  <div id="page-content-wrapper">
+    <app-navbar></app-navbar>
+    <div class="container-fluid">
+
+      <div class="col-12">
+        <br>
+        <h3 class="text-muted text-center">Güncellemek İstediğiniz Resmi Seçin</h3>
+        <hr>
+        <ul class="list-group">
+
+          <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let detail of details" >
+            <h4>{{detail.brandName}} {{detail.modelName}}({{detail.colorName}})</h4>
+            <div class="image-parent">
+              <img src="{{baseUrl}}{{detail.imagePath}}" style="width: 440px; height: 250px;" class="img-fluid" >
+            </div>
+            <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files,detail.imageId)" style="display:none;">
+            <button type="button" class="btn btn-success" (click)="file.click()">Upload File</button>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</div>

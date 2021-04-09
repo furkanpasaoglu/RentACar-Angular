@@ -30,7 +30,7 @@ export class RentalService {
         rental:
           {
             'carId': rental.carId,
-            'customerId': rental.customerId,
+            'customerId': rental.userId,
             'returnDate': rental.returnDate
           },
         fakeCreditCardModel:
@@ -42,6 +42,10 @@ export class RentalService {
             'cvv': fakeCreditCard.cvv
           }
       });
+  }
+
+  getTotalRentedCar():Observable<ListResponseModel<ResponseModel>>{
+    return this.httpClient.get<ListResponseModel<ResponseModel>>(this.apiUrl + 'rentals/totalrentedcar');
   }
 
 }

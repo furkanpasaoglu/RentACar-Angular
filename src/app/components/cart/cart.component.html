@@ -1,11 +1,12 @@
-
+<app-navi></app-navi>
+<br>
 <div class="container" >
   <div class="card shopping-cart">
     <div class="card-header bg-dark text-light">
       <i class="fa fa-shopping-cart" aria-hidden="true"></i>
       Sepetiniz
     </div>
-    <div class="card-body" *ngFor="let cartItem of cartItems">
+    <div class="card-body">
       <!-- PRODUCT -->
       <div class="row">
         <div class="col-12 col-sm-12 col-md-2 text-center">
@@ -14,7 +15,7 @@
         <div class="col-12 text-sm-center col-sm-12 text-md-left col-md-6">
           <h4 class="product-name"><strong>{{cartItem.car.brandName}}</strong></h4>
           <h4>
-            <small>{{cartItem.car.description}}</small>
+            <small>{{cartItem.car.modelName}}</small>
           </h4>
         </div>
         <div class="col-12 col-sm-12 text-sm-center col-md-4 text-md-right row">
@@ -33,38 +34,38 @@
           </div>
         </div>
       </div>
-      <hr>
-      <!-- END PRODUCT -->
-      <div style="background-color: transparent">
-        <div class="coupon col-md-5 col-sm-5 no-padding-left pull-left">
-          <div class="row">
-            <div class="col-6">
-              <form class="form-inline">
-                <div class="form-group">
-                  <div class="input-group">
-                    <input class="form-control" placeholder="yyyy-mm-dd"
-                           name="dp" [(ngModel)]="model" ngbDatepicker
-                           #d="ngbDatepicker" (ngModelChange)="calculatePrice()">
-                    <div class="input-group-append">
-                      <button class="icon-calendar" (click)="d.toggle()" type="button">Kiralama Tarihi</button>
-                    </div>
-                  </div>
-                </div>
-              </form>
-            </div>
+      <div class="container">
+        <div class="returnDate date">
+          <input class="form-control" placeholder="yyyy-mm-dd"
+                 name="dp" [(ngModel)]="rentDate" ngbDatepicker
+                 [minDate]="minRentDate" [readOnly]="true"
+                 #d="ngbDatepicker" (ngModelChange)="checkCarReturnDate()">
+          <div class="input-group-append">
+            <button class="glow-on-hover" (click)="d.toggle()" type="button">Alış Tarihi</button>
           </div>
-          <br>
         </div>
-        <div class="pull-right" style="margin-top: 50px;">
-          <button (click)="createRental()"
-                  routerLink="/payment/"
-                  type="button" class="btn btn-success pull-right"> Ödemeye Git
+        <div class="rentDate date">
+          <input class="form-control" placeholder="yyyy-mm-dd"
+                 name="dp2" [(ngModel)]="model" ngbDatepicker
+                 [minDate]="minRentalDate" [readOnly]="true"
+                 #d2="ngbDatepicker" (ngModelChange)="calculatePrice()">
+          <div class="input-group-append">
+            <button class="glow-on-hover" (click)="d2.toggle()" type="button">Teslim Tarihi</button>
+          </div>
+        </div>
+
+        <div class="totalPrice date">
+          <div class="totalPrice">
+            Toplam Fiyat: <b>{{totalPrice}}
+            <i class="fa fa-try" aria-hidden="true"></i>
+          </b>
+          </div>
+          <button (click)="createRental()" class="glow-on-hover"> Ödemeye Git
           </button>
-          <div class="pull-right" style="margin: 5px">
-            Toplam Fiyat: <b>{{totalPrice}} TL</b>
-          </div>
         </div>
+        <br>
       </div>
+
     </div>
   </div>
 </div>

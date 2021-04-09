@@ -9,9 +9,10 @@ import {ToastrService} from 'ngx-toastr';
 })
 export class LoginGuard implements CanActivate {
 
-  constructor(private authService:AuthService,private toastrService:ToastrService,private router:Router) {
+  constructor(private authService:AuthService,
+              private toastrService:ToastrService,
+              private router:Router) {
   }
-
 
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -19,12 +20,11 @@ export class LoginGuard implements CanActivate {
 
     if(this.authService.isAuthenticated()){
       return true;
-    }else{
+    }
+    else{
       this.router.navigate(['login'])
       this.toastrService.info('Sisteme Giriş Yapmalısınız');
       return false;
     }
-
   }
-
 }

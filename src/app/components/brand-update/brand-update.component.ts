@@ -22,14 +22,14 @@ export class BrandUpdateComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe(params => {
-      if (params['id']) {
-        this.brandId = parseInt(params['id']);
-        this.getBrandById(params['id']);
-      }
-    });
-    this.createBrandUpdateForm();
+    this.load();
   }
+
+  load(){
+    this.createBrandUpdateForm();
+    this.getBrands();
+  }
+
   updateBrand() {
     if (this.brandUpdateForm.valid) {
       let brandModel = Object.assign({}, this.brandUpdateForm.value);
@@ -46,15 +46,15 @@ export class BrandUpdateComponent implements OnInit {
       this.toastrService.error('Form Bilgileriniz Eksik!', 'Hata');
     }
   }
-  getBrandById(id: number) {
-    this.brandService.getBrandById(id).subscribe(response => {
+  getBrands() {
+    this.brandService.getBrands().subscribe(response => {
       this.brands = response.data;
     });
   }
 
   createBrandUpdateForm() {
     this.brandUpdateForm = this.formBuilder.group({
-      brandId: [this.brandId],
+      brandId: ["",Validators.required],
       brandName: ['', Validators.required],
     });
   }

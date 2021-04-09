@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -7,7 +7,7 @@ import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./app.component.css'],
   providers: [NgbCarouselConfig] // add NgbCarouselConfig to the component providers
 })
-export class AppComponent {
-  title = 'RentACar';
 
+export class AppComponent{
+  title = 'RentACar';
 }

@@ -1,0 +1,23 @@
+<div class="d-flex" id="wrapper">
+  <app-sidebar></app-sidebar>
+  <div id="page-content-wrapper">
+    <app-navbar></app-navbar>
+    <div class="container-fluid">
+      <br>
+      <table class="table">
+        <thead class="thead-dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Renk</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let color of colors">
+          <th scope="row">{{color.colorId}}</th>
+          <td>{{color.colorName}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

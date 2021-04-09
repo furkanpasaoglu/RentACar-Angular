@@ -1,0 +1,55 @@
+<div class="bg-light border-right" id="sidebar-wrapper">
+  <div class="sidebar-heading text-center" routerLink="/adminpanel" type="button" ><i class="fa fa-car"></i> Rent A Car</div>
+  <hr>
+  <div class="sidebar-heading text-center" ><i class="fa fa-users"></i> Yönetici Paneli</div>
+  <hr>
+  <div class="list-group list-group-flush">
+    <a routerLink="/adminpanel" class="list-group-item list-group-item-action bg-light"><i class="fa fa-dashboard"></i> Dashboard</a>
+    <a routerLink="/adminpanel/profile" class="list-group-item list-group-item-action bg-light"><i class="fa fa-user"></i> Profile</a>
+
+    <a href="#collapse1" class="list-group-item list-group-item-action bg-light" data-toggle="collapse"><i class="fa fa-car"></i> Araba</a>
+    <div id="collapse1" class="panel-collapse collapse">
+      <ul class="list-group">
+        <a routerLink="/adminpanel/car/add" class="list-group-item list-group-item-action bg-light" ><i class="fa fa-car"></i> Araba Ekle</a>
+        <a routerLink="/adminpanel/car/delete" class="list-group-item list-group-item-action bg-light" ><i class="fa fa-car"></i> Araba Sil</a>
+        <a routerLink="/adminpanel/car/update" class="list-group-item list-group-item-action bg-light" ><i class="fa fa-car"></i> Araba Güncelle</a>
+        <a routerLink="/adminpanel/car/imageadd" class="list-group-item list-group-item-action bg-light" ><i class="fa fa-car"></i> Araba Resim Ekle</a>
+        <a routerLink="/adminpanel/car/imagedelete" class="list-group-item list-group-item-action bg-light" ><i class="fa fa-car"></i> Araba Resim Sil</a>
+        <a routerLink="/adminpanel/car/imageupdate" class="list-group-item list-group-item-action bg-light" ><i class="fa fa-car"></i> Araba Resim Güncelle</a>
+      </ul>
+    </div>
+
+    <a href="#collapse2" data-toggle="collapse" class="list-group-item list-group-item-action bg-light"><i class="fa fa-tag"></i> Markalar</a>
+    <div id="collapse2" class="panel-collapse collapse">
+      <ul class="list-group">
+        <a routerLink="/adminpanel/brand/add" class="list-group-item list-group-item-action bg-light" ><i class="fa fa-tag"></i> Marka Ekle</a>
+        <a routerLink="/adminpanel/brand/delete" class="list-group-item list-group-item-action bg-light" ><i class="fa fa-tag"></i> Marka Sil</a>
+        <a routerLink="/adminpanel/brand/update" class="list-group-item list-group-item-action bg-light" ><i class="fa fa-tag"></i> Marka Güncelle</a>
+      </ul>
+    </div>
+
+    <a href="#collapse3" data-toggle="collapse" class="list-group-item list-group-item-action bg-light"><i class="fa fa-paint-brush"></i> Renkler</a>
+    <div id="collapse3" class="panel-collapse collapse">
+      <ul class="list-group">
+        <a routerLink="/adminpanel/color/add" class="list-group-item list-group-item-action bg-light" ><i class="fa fa-paint-brush"></i> Renk Ekle</a>
+        <a routerLink="/adminpanel/color/delete" class="list-group-item list-group-item-action bg-light" ><i class="fa fa-paint-brush"></i> Renk Sil</a>
+        <a routerLink="/adminpanel/color/update" class="list-group-item list-group-item-action bg-light" ><i class="fa fa-paint-brush"></i> Renk Güncelle</a>
+      </ul>
+    </div>
+  </div>
+
+  <a href="#collapse4" data-toggle="collapse" class="list-group-item list-group-item-action bg-light"><i class="fa fa-table"></i> Tablolar</a>
+  <div id="collapse4" class="panel-collapse collapse">
+    <ul class="list-group">
+      <a routerLink="/adminpanel/car" class="list-group-item list-group-item-action bg-light"><i class="fa fa-car"></i> Araba Listele</a>
+      <a routerLink="/adminpanel/users" class="list-group-item list-group-item-action bg-light"><i class="fa fa-users"></i> Üyeleri Listele</a>
+      <a routerLink="/adminpanel/color" class="list-group-item list-group-item-action bg-light"><i class="fa fa-paint-brush"></i> Renk Listele</a>
+      <a routerLink="/adminpanel/brand" class="list-group-item list-group-item-action bg-light"><i class="fa fa-tags"></i> Marka Listele</a>
+      <a routerLink="/adminpanel/customer" class="list-group-item list-group-item-action bg-light"><i class="fa fa-building-o"></i> Şirket Listele</a>
+    </ul>
+  </div>
+  <div class="sidebar-heading text-center" style="font-size: medium">Çıkış İşlemleri</div>
+  <a routerLink="" class="list-group-item list-group-item-action bg-light"><i class="fa fa-globe"></i> Siteye Git</a>
+  <a routerLink="" (click)="lobby()" class="list-group-item list-group-item-action bg-light"><i class="fa fa-sign-out"></i> Çıkış Yap</a>
+
+</div>

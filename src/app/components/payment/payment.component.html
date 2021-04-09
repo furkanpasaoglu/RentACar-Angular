@@ -1,3 +1,5 @@
+<app-navi></app-navi>
+<br>
 <div class="row">
   <div class="col-75">
     <div class="container">
@@ -15,7 +17,7 @@
             <input type="text" id="city" name="city" placeholder="Şehir">
 
             <div class="row">
-              <div class="col-50">
+              <div class="col-50" style="margin-left: -13px">
                 <label for="state">Sokak</label>
                 <input type="text" id="state" name="state" placeholder="Sokak">
               </div>
@@ -57,7 +59,7 @@
                   rentalForm.get('expirationMonth').dirty">Geçerlilik Ayı Boş Bırakılamaz</div>
 
             <div class="row">
-              <div class="col-50">
+              <div class="col-50" style="margin-left: -13px">
                 <label for="expyear">Yıl</label>
                 <input type="text" formControlName="expirationYear"
                        [(ngModel)]="fakeCreditCard.expirationYear" id="expyear"
@@ -85,7 +87,7 @@
         <label>
           <input type="checkbox" checked="checked" name="sameadr"> Kart Bilgilerimi Kaydet
         </label>
-        <button (click)="addRental(rental, fakeCreditCard)" [disabled]="!rentalForm.valid"  data-toggle="modal" data-target="#exampleModal" class="btn">Ödemeyi Tamamla</button>
+        <button  [disabled]="!rentalForm.valid"  data-toggle="modal" data-target="#exampleModal" class="btn">Ödemeyi Tamamla</button>
       </form>
     </div>
   </div>
@@ -103,8 +105,8 @@
         Kredi Kartınızı Kaydetmek İstermisiniz
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Hayır</button>
-        <button type="button" (click)="addCreditCart(fakeCreditCard)" data-dismiss="modal" class="btn btn-primary">Evet</button>
+        <button type="button" (click)="addRental(rental, fakeCreditCard)"  class="btn btn-secondary" data-dismiss="modal">Hayır</button>
+        <button type="button" (click)="addRental(rental, fakeCreditCard)" (click)="addCreditCart(fakeCreditCard)" data-dismiss="modal" class="btn btn-primary">Evet</button>
       </div>
     </div>
   </div>

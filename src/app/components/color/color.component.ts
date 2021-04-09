@@ -9,18 +9,20 @@ import {Filters} from '../../models/filters';
   styleUrls: ['./color.component.css']
 })
 export class ColorComponent implements OnInit {
-
   colors: Color[] = [];
   dataLoaded = false;
   error = '';
   currentColor: Color;
   allColor?: Color;
-  Filters = { brandId: '', colorId: '' };
 
   constructor(private colorService: ColorService) {
   }
 
   ngOnInit(): void {
+    this.load();
+  }
+
+  load(){
     this.getColors();
   }
 

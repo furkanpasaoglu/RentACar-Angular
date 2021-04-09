@@ -1,41 +1,59 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <a class="navbar-brand" routerLink="/">Rent A Car</a>
+<nav class="navbar navbar-icon-top navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" routerLink=""> <i class="fa fa-car"></i> Rent A Car</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" routerLink="/" >Anasayfa </a>
+        <a class="nav-link" routerLink="/">
+          <i class="fa fa-home"></i>
+          Anasayfa
+          <span class="sr-only">(current)</span>
+        </a>
       </li>
 
-        <li class="nav-item active" *ngIf="checkToLogin()==false">
-          <a class="nav-link" routerLink="login" >Giriş</a>
-        </li>
-
-        <li class="nav-item active" *ngIf="checkToLogin()==false">
-          <a class="nav-link" routerLink="register" >Kayıt</a>
-        </li>
-
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Araçlar
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/cart">
+          <i class="fa fa-shopping-cart"></i>
+          Sepete Git
         </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" routerLink="/color/add" >Renk Ekle</a>
-          <a class="dropdown-item" routerLink="/brand/add" >Marka Ekle</a>
-          <a class="dropdown-item" routerLink="/car/add">Araba Ekle</a>
-        </div>
+      </li>
+
+      <li class="nav-item" *ngIf="check==false">
+        <a class="nav-link" routerLink="/login">
+          <i class="fa fa-sign-in"></i>
+          Giriş Yap
+        </a>
+      </li>
+
+      <li class="nav-item" *ngIf="check==false">
+        <a class="nav-link" routerLink="/register">
+          <i class="fa fa-user-plus"></i>
+          Kayıt Ol
+        </a>
+      </li>
+
+      <li class="nav-item" *ngIf="this.checkAdmin()">
+        <a class="nav-link" routerLink="/adminpanel">
+          <i class="fa fa-unlock-alt"></i>
+          Admin Paneli
+        </a>
       </li>
 
     </ul>
+
     <ul class="nav navbar-nav ml-auto" *ngIf="checkToEmail()==true">
       <li class="nav-item dropdown">
-        <a href="" class="nav-link dropdown-toggle" data-toggle="dropdown">{{this.user.firstName}} {{this.user.lastName}}</a>
+        <a href="" class="nav-link dropdown-toggle" data-toggle="dropdown">
+          <i class="fa fa-user">
+            <span class="badge badge-primary"></span>
+          </i>
+          {{this.user.firstName}} {{this.user.lastName}}</a>
         <div class="dropdown-menu dropdown-menu-right">
-          <a routerLink="/profile" class="dropdown-item">Ayarlar</a>
+          <a routerLink="/profile"  class="dropdown-item"><i class="fa fa-pencil fa-fw"></i> Ayarlar</a>
           <div class="dropdown-divider"></div>
-          <a href="" class="dropdown-item" (click)="logOut()" >Çıkış Yap</a>
+            <a href="" class="dropdown-item" (click)="logOut()"  ><i class="fa fa-sign-out"></i> Çıkış Yap</a>
         </div>
       </li>
     </ul>
@@ -43,3 +61,43 @@
 </nav>
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--    <ul class="navbar-nav ">-->
+<!--      <li class="nav-item">-->
+<!--        <a class="nav-link" href="#">-->
+<!--          <i class="fa fa-bell">-->
+<!--            <span class="badge badge-info">11</span>-->
+<!--          </i>-->
+<!--          Test-->
+<!--        </a>-->
+<!--      </li>-->
+<!--      <li class="nav-item">-->
+<!--        <a class="nav-link" href="#">-->
+<!--          <i class="fa fa-globe">-->
+<!--            <span class="badge badge-success">11</span>-->
+<!--          </i>-->
+<!--          Test-->
+<!--        </a>-->
+<!--      </li>-->
+<!--    </ul>-->

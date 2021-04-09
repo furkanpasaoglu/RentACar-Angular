@@ -1,0 +1,37 @@
+<div class="d-flex" id="wrapper">
+  <app-sidebar></app-sidebar>
+  <div id="page-content-wrapper">
+    <app-navbar></app-navbar>
+    <div class="container-fluid">
+      <br>
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Resim</th>
+            <th scope="col">Marka</th>
+            <th scope="col">Model</th>
+            <th scope="col">Renk</th>
+            <th scope="col">Yıl</th>
+            <th scope="col">Fiyat</th>
+            <th scope="col">Açıklama</th>
+          </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let car of cars">
+          <th scope="row">{{car.id}}</th>
+          <td class="w-25">
+            <img src="{{baseUrl}}{{car.imagePath}}" style="height: 125px;width: 250px;" class="img-fluid img-thumbnail" alt="resim1">
+          </td>
+          <td>{{car.brandName}}</td>
+          <td>{{car.modelName}}</td>
+          <td>{{car.colorName}}</td>
+          <td>{{car.modelYear}}</td>
+          <td>{{car.dailyPrice}}</td>
+          <td>{{car.description}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

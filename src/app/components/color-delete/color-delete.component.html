@@ -1,0 +1,31 @@
+<div class="d-flex" id="wrapper">
+  <app-sidebar></app-sidebar>
+  <div id="page-content-wrapper">
+    <app-navbar></app-navbar>
+    <div class="container-fluid">
+      <br>
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header"><h5 class="card-title">Renk Sil</h5></div>
+          <div class="card-body">
+            <form [formGroup]="colorDeleteForm">
+              <div class="mb-3">
+                <div class="form-group">
+                  <label>Renk Seçiniz</label>
+                  <select class="form-control" formControlName="colorId">
+                    <option *ngFor="let color of colors" [ngValue]="color.colorId">{{color.colorName}}</option>
+                  </select>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="card-footer">
+            <button class="btn btn-outline-primary" (click)="deleteColor()">Sil</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+

@@ -2,6 +2,8 @@ body {
   font-family: Arial;
   font-size: 17px;
   padding: 8px;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 * {
@@ -13,7 +15,7 @@ body {
   display: flex;
   -ms-flex-wrap: wrap; /* IE10 */
   flex-wrap: wrap;
-  margin: 0 -16px;
+  margin: 0 0px;
 }
 
 .col-25 {

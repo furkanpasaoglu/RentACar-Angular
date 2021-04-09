@@ -12,5 +12,4 @@ export class FilterPipePipe implements PipeTransform {
     return filterText ? value.filter((p:Car)=>
       p.brandName.toLocaleLowerCase().indexOf(filterText)!==-1):value
   }
-
 }

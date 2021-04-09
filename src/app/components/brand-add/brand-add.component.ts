@@ -14,6 +14,10 @@ export class BrandAddComponent implements OnInit {
   constructor(private brandService:BrandService,private formBuilder:FormBuilder,private toastrService:ToastrService) { }
 
   ngOnInit(): void {
+   this.load();
+  }
+
+  load(){
     this.createCarAddForm();
   }
 

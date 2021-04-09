@@ -1,0 +1,28 @@
+<div class="d-flex" id="wrapper">
+  <app-sidebar></app-sidebar>
+  <div id="page-content-wrapper">
+    <app-navbar></app-navbar>
+    <div class="container-fluid">
+      <table class="table table-image">
+        <thead>
+          <tr>
+          <th scope="col">Resim Id</th>
+          <th scope="col">Araba Id</th>
+          <th scope="col">Resim</th>
+          <th scope="col">Sil</th>
+        </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let image of carImages">
+            <th scope="row">{{image.id}}</th>
+            <td>{{image.carId}}</td>
+            <td class="w-25">
+              <img src="{{baseUrl}}{{image.imagePath}}" style="height: 125px;width: 250px;" class="img-fluid img-thumbnail" alt="Sheep">
+            </td>
+            <td><button class="btn btn-danger" (click)="delete(image.id,image.carId)" >Sil</button></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

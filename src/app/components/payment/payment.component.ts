@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {CartItem} from '../../models/cartItem';
-import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
+import {ActivatedRoute, Router} from '@angular/router';
 import {RentalDetail} from '../../models/rentalDetail';
 import {FakeCreditCard} from '../../models/fakeCreditCard';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
@@ -23,17 +21,21 @@ export class PaymentComponent implements OnInit {
               private rentalService: RentalService,
               private toastrService: ToastrService,
               private formBuilder: FormBuilder,
-              private localStorageService:LocalStorageService) {
+              private localStorageService:LocalStorageService,
+              private router:Router) {
   }
 
   ngOnInit(): void {
+    this.load();
+  }
+
+  load(){
     this.createForm();
     this.activatedRoute.params.subscribe(params => {
       if (params['myrental']) {
         this.rental = JSON.parse(params['myrental']);
       }
     });
-
     var cardHolderName = this.localStorageService.get('HolderName');
     var expirationYear = this.localStorageService.get('ExpirationYear');
     var expirationMonth = this.localStorageService.get('ExpirationMonth');
@@ -46,7 +48,6 @@ export class PaymentComponent implements OnInit {
       this.fakeCreditCard.cardNumber = cardNumber;
       this.fakeCreditCard.cvv = cvv;
     }
-
   }
 
   createForm() {
@@ -62,6 +63,7 @@ export class PaymentComponent implements OnInit {
   addRental(rental: RentalDetail, fakeCreditCard: FakeCreditCard) {
      this.rentalService.addRental(rental, fakeCreditCard).subscribe(response => {
        this.toastrService.success('Araç kiralandı');
+      this.router.navigate(['/'])
      });
   }
 
@@ -72,13 +74,5 @@ export class PaymentComponent implements OnInit {
     this.localStorageService.set('ExpirationMonth',fakeCreditCard.expirationMonth.toString())
     this.localStorageService.set('Cvv',fakeCreditCard.cvv)
     this.toastrService.success("Başarıyla Kartınız Kaydedildi")
-  }
-
-  getCreditCart(){
-     this.localStorageService.get('HolderName');
-     this.localStorageService.get('CartNumber');
-     this.localStorageService.get('ExpirationYear');
-     this.localStorageService.get('ExpirationMonth');
-     this.localStorageService.get('Cvv');
   }
 }

@@ -10,10 +10,15 @@ import {ColorService} from '../../services/color.service';
 })
 export class ColorAddComponent implements OnInit {
   colorAddForm:FormGroup;
-
-  constructor(private formBuilder:FormBuilder,private toastrService:ToastrService,private colorService:ColorService) { }
+  constructor(private formBuilder:FormBuilder,
+              private toastrService:ToastrService,
+              private colorService:ColorService) { }
 
   ngOnInit(): void {
+    this.load();
+  }
+
+  load(){
     this.createColorAddForm();
   }
 

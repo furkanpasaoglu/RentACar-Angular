@@ -13,9 +13,17 @@ import {Router} from '@angular/router';
 export class RegisterComponent implements OnInit {
   registerForm:FormGroup
 
-  constructor(private authService:AuthService,private toastrService:ToastrService,private formBuilder:FormBuilder,private localStorageService:LocalStorageService,private router:Router) { }
+  constructor(private authService:AuthService,
+              private toastrService:ToastrService,
+              private formBuilder:FormBuilder,
+              private localStorageService:LocalStorageService,
+              private router:Router) { }
 
   ngOnInit(): void {
+    this.load();
+  }
+
+  load(){
     this.createRegisterForm();
   }
 
@@ -42,6 +50,4 @@ export class RegisterComponent implements OnInit {
       this.toastrService.error("Lütfen Boş Bırakmayınız")
     }
   }
-
-
 }

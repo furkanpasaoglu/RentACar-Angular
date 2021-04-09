@@ -9,18 +9,19 @@ import {Filters} from '../../models/filters';
   styleUrls: ['./brand.component.css']
 })
 export class BrandComponent implements OnInit {
-
   brands: Brand[] = [];
   dataLoaded = false;
   error = '';
   currentBrand: Brand;
   allBrand?: Brand;
-  Filters = {};
 
-  constructor(private brandService: BrandService) {
-  }
+  constructor(private brandService: BrandService) {}
 
   ngOnInit(): void {
+    this.load();
+  }
+
+  load(){
     this.getBrands();
   }
 

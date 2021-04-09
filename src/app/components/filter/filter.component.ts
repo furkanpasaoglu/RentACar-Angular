@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import {Router} from '@angular/router';
 import {Filters} from '../../models/filters';
 
 @Component({
@@ -9,7 +9,7 @@ import {Filters} from '../../models/filters';
 })
 export class FilterComponent implements OnInit {
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) {
+  constructor(private router: Router) {
   }
 
   ngOnInit(): void {

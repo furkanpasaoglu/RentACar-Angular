@@ -5,6 +5,7 @@ import { Car } from '../models/car';
 import { ListResponseModel } from '../models/listResponseModel';
 import {environment} from '../../environments/environment';
 import {ResponseModel} from '../models/responseModel';
+import {SingleResponseModel} from "../models/singleResponseModel";
 
 @Injectable({
   providedIn: 'root'
@@ -46,4 +47,17 @@ export class CarService {
   updateCar(car:Car):Observable<ResponseModel>{
     return this.httpClient.post<ResponseModel>(this.apiUrl + 'cars/update',car);
   }
+
+  getTotalCars():Observable<ListResponseModel<ResponseModel>>{
+    return this.httpClient.get<ListResponseModel<ResponseModel>>(this.apiUrl+'cars/totalcars');
+  }
+
+  getLastRentedCar():Observable<SingleResponseModel<Car>>{
+    return this.httpClient.get<SingleResponseModel<Car>>(this.apiUrl + 'cars/lastrentedcar');
+  }
+
+  deleteCar(car: Car): Observable<ResponseModel> {
+    return this.httpClient.post<ResponseModel>(this.apiUrl + 'cars/delete', car);
+  }
+
 }

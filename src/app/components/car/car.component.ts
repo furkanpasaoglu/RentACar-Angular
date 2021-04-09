@@ -4,11 +4,6 @@ import { Car } from 'src/app/models/car';
 import { CarService } from 'src/app/services/car.service';
 import {faLiraSign} from '@fortawesome/free-solid-svg-icons';
 import {environment} from '../../../environments/environment';
-import {ToastrService} from 'ngx-toastr';
-import {CartService} from '../../services/cart.service';
-import {RentalService} from '../../services/rental.service';
-import {Rental} from '../../models/rental';
-import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-car',
@@ -21,18 +16,15 @@ export class CarComponent implements OnInit {
   dataLoaded = false;
   faLira = faLiraSign;
   filterText ="";
-  rentalDetail: Rental[];
 
   constructor(private carService:CarService,
-              private activatedRoute:ActivatedRoute,
-              private toastrService:ToastrService,
-              private cartService:CartService,
-              private rentalService:RentalService,
-              private router: Router,
-              private authService:AuthService
-              ) { }
+              private activatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.load();
+  }
+
+  load(){
     this.activatedRoute.params.subscribe(params => {
       if (params['brandId'] && params['colorId'])
         this.getCarByBrandAndColor(params['brandId'], params['colorId']);

@@ -13,9 +13,17 @@ import {Router} from '@angular/router';
 export class LoginComponent implements OnInit {
   loginForm:FormGroup
 
-  constructor(private authService:AuthService,private toastrService:ToastrService,private formBuilder:FormBuilder,private localStorageService:LocalStorageService,private router:Router) { }
+  constructor(private authService:AuthService,
+              private toastrService:ToastrService,
+              private formBuilder:FormBuilder,
+              private localStorageService:LocalStorageService,
+              private router:Router) { }
 
   ngOnInit(): void {
+    this.load();
+  }
+
+  load(){
     this.createLoginForm();
   }
 
@@ -30,7 +38,7 @@ export class LoginComponent implements OnInit {
     if(this.loginForm.valid){
       let loginModel = Object.assign({},this.loginForm.value);
       this.authService.login(loginModel).subscribe(response=>{
-        this.toastrService.success(response.message)
+        this.toastrService.success("Başarıyla Giriş Yapıldı")
         this.localStorageService.set('token',response.data.token)
         this.localStorageService.set('email',this.loginForm.value.email);
         this.router.navigate(["/"]).then(r => window.location.reload())
@@ -42,5 +50,4 @@ export class LoginComponent implements OnInit {
       this.toastrService.error("Lütfen Boş Bırakmayınız")
     }
   }
-
 }

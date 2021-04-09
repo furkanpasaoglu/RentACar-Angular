@@ -1,0 +1,23 @@
+<div class="d-flex" id="wrapper">
+  <app-sidebar></app-sidebar>
+  <div id="page-content-wrapper">
+    <app-navbar></app-navbar>
+    <div class="container-fluid">
+      <br>
+      <table class="table">
+        <thead class="thead-dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Marka</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let brand of brands">
+          <th scope="row">{{brand.brandId}}</th>
+          <td>{{brand.brandName}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

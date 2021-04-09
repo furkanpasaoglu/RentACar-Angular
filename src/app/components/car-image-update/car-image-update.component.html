@@ -1,0 +1,21 @@
+<div class="d-flex" id="wrapper">
+  <app-sidebar></app-sidebar>
+  <div id="page-content-wrapper">
+    <app-navbar></app-navbar>
+    <div class="container">
+      <h1 class="font-weight-light  mt-4 mb-0 text-lg-center ">Araba Seçiniz</h1>
+      <hr class="mt-2 mb-5">
+      <div class="row text-center text-lg-left">
+        <div class="col-lg-3 col-md-4 col-6" *ngFor="let car of cars">
+          <br>
+
+          <a routerLink="/adminpanel/car/imageupdateDetail/{{car.id}}" class="d mb-4 h-100">
+            <img class="img-fluid img-thumbnail" src="{{baseUrl}}{{car.imagePath}}" style="width: 250px; height: 130px;" alt="">
+          </a>
+          <b>{{car.brandName}} {{car.modelName}} ({{car.colorName}})</b>
+        </div>
+      </div>
+  </div>
+</div>
+</div>
+

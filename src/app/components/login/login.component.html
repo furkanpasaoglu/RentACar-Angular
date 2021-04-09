@@ -1,8 +1,7 @@
-<body class="text-center">
-
-<main class="form-signin">
-  <form [formGroup]="loginForm">
-    <img class="mb-4" src="https://getbootstrap.com/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
+<body class="text-center" style="margin-top: 50px;">
+  <main class="form-signin">
+    <form [formGroup]="loginForm">
+      <i class="fa fa-car fa-5x"></i>
     <h1 class="h3 mb-3 fw-normal">Giriş Yap</h1>
 
     <div class="form-floating">
@@ -16,7 +15,7 @@
 
     <div class="checkbox mb-3">
       <label>
-        <input type="checkbox" value="remember-me"> Remember me
+        <input type="checkbox" value="remember-me"> Beni Hatırla
       </label>
     </div>
     <button (click)="login()" class="w-100 btn btn-lg btn-primary">Giriş Yap</button>

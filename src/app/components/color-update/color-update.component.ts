@@ -11,7 +11,7 @@ import {Color} from '../../models/color';
   styleUrls: ['./color-update.component.css']
 })
 export class ColorUpdateComponent implements OnInit {
-  colors: Color[] = [];
+  colors: Color[];
   colorUpdateForm: FormGroup;
   colorId: number;
 
@@ -22,14 +22,14 @@ export class ColorUpdateComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe(params => {
-      if (params['id']) {
-        this.colorId = parseInt(params['id']);
-        this.getColorById(params['id']);
-      }
-    });
-    this.createColorUpdateForm();
+    this.load();
   }
+
+  load(){
+    this.createColorUpdateForm();
+    this.getColors();
+  }
+
   updateColor() {
     if (this.colorUpdateForm.valid) {
       let colorModel = Object.assign({}, this.colorUpdateForm.value);
@@ -46,16 +46,16 @@ export class ColorUpdateComponent implements OnInit {
       this.toastrService.error('Form Bilgileriniz Eksik!', 'Hata');
     }
   }
-  getColorById(id: number) {
-    this.colorService.getColorById(id).subscribe(response => {
+
+  getColors(){
+    this.colorService.getColors().subscribe(response=>{
       this.colors = response.data;
-      console.log(response);
-    });
+    })
   }
 
   createColorUpdateForm() {
     this.colorUpdateForm = this.formBuilder.group({
-      colorId: [this.colorId],
+      colorId: ["",Validators.required],
       colorName: ['', Validators.required],
     });
   }

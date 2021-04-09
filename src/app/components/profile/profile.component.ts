@@ -17,9 +17,15 @@ export class ProfileComponent implements OnInit {
   status:string
 
 
-  constructor(private userService:UserService,private formBuilder:FormBuilder,private toastrService:ToastrService) { }
+  constructor(private userService:UserService,
+              private formBuilder:FormBuilder,
+              private toastrService:ToastrService) { }
 
   ngOnInit(): void {
+    this.load();
+  }
+
+  load(){
     this.createProfileAddForm();
     this.email = localStorage.getItem('email')
     this.getUser();

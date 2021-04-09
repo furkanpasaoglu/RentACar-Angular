@@ -13,22 +13,24 @@ import {User} from '../../models/user';
 })
 export class NaviComponent implements OnInit {
   email = this.localStorageService.get('email');
-  user:User=new User();
+  user:User = new User();
+  check:boolean;
 
-  constructor(private authService:AuthService,private localStorageService:LocalStorageService,private userService:UserService,private  toastrService:ToastrService,private router:Router) { }
+  constructor(private authService:AuthService,
+              private localStorageService:LocalStorageService,
+              private userService:UserService,
+              private toastrService:ToastrService,
+              private router:Router) { }
 
   ngOnInit(): void {
-    this.checkToLogin();
-    this.checkToEmail();
-    this.getEmail();
+    this.load();
   }
 
-  checkToLogin(){
-    if(this.authService.isAuthenticated()){
-      return true;
-    }else{
-      return false;
-    }
+  load(){
+    this.check = this.authService.isAuthenticated();
+    this.checkToEmail();
+    this.getEmail();
+    this.checkAdmin();
   }
 
   checkToEmail(){
@@ -49,7 +51,22 @@ export class NaviComponent implements OnInit {
     if(this.email){
       this.userService.getByEmail(this.email).subscribe(response=>{
         this.user = response;
+        this.authService.getClaims(this.user.id).subscribe(response=>{
+          if(response.data.length>0){
+            this.localStorageService.set('yetki','var')
+            this.localStorageService.set('id',this.user.id.toString())
+          }
+        })
       })
     }
   }
+
+  checkAdmin(){
+    if(this.localStorageService.get('yetki')){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
 }

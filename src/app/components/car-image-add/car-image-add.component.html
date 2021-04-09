@@ -1,0 +1,43 @@
+<div class="d-flex" id="wrapper">
+  <app-sidebar></app-sidebar>
+
+  <div id="page-content-wrapper">
+    <app-navbar></app-navbar>
+    <div class="container-fluid">
+      <br>
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header"><h5 class="card-title">Arabaya Resim Ekle</h5></div>
+          <div class="card-body">
+            <form [formGroup]="imageAddForm">
+              <div class="mb-3">
+                <div class="form-group">
+                  <label>Araba Seçiniz</label>
+                  <select class="form-control" formControlName="CarId" name="file">
+                    <option *ngFor="let car of cars" [ngValue]="car.id">{{car.id}} : {{car.brandName}} / {{car.modelName}} / {{car.colorName}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="mb-3">
+                <div class="form-group">
+                  <div class="form-group">
+                    <input type="file" (change)="uploadFile($event)">
+                  </div>
+                </div>
+              </div>
+
+            </form>
+          </div>
+          <div class="card-footer">
+            <div class="form-group">
+              <button class="btn btn-danger btn-block btn-lg" (click)="submitForm()">Resmi Ekle</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+

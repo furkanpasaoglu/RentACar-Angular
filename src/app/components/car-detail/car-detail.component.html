@@ -1,77 +1,97 @@
+<app-navi></app-navi>
+<br>
 <div class="container">
-    <div class="row">
-      <div class="col-md-3">
-
-        <div class="container">
-          <div class="row justify-content-center">
-            <div class="card" style="width: 18rem;">
-              <div class="card-body">
-                <h5 class="card-title">Findeks Hesaplama</h5>
-                <Form [formGroup]="userFindeksForm">
-                  <div class="mb-3">
-                    <div class="form-group">
-                      <label>Tc Kimlik Numaranız</label>
-                      <input  class="form-control" type="text" formControlName="tc">
-                    </div>
-                  </div>
-                  <div class="mb-3">
-                    <div class="form-group">
-                      <label>Doğum Yılınız</label>
-                      <input class="form-control" type="text" formControlName="dateYear">
-                    </div>
-                  </div>
-                  <button class="btn btn-primary" (click)="getUserFindeks()">Puanımı Hesapla</button>
-                </Form>
-
+  <div class="row">
+    <div class="col-md-5">
+      <div class="card" style="margin-bottom: 15px;">
+        <div class="card-body">
+          <ngb-carousel>
+            <ng-template ngbSlide *ngFor ="let car of carDetails">
+              <div class="picsum-img-wrapper" >
+                <img class="d-block" style="width: 100%;  height: 422px;" src="{{apiUrl}}{{car.imagePath}}" >
               </div>
-            </div>
-          </div>
+            </ng-template>
+          </ngb-carousel>
         </div>
-
       </div>
+    </div>
 
-      <div class="col-md-9">
-        <div class="row justify-content-center">
-
-        <div class="card" style="margin-bottom: 15px;">
-          <div class="card-body">
-            <ngb-carousel>
-              <ng-template ngbSlide *ngFor ="let car of carDetails">
-                <div class="picsum-img-wrapper" style="width: 900px; height: 435px;">
-                  <img  class="d-block w-100" style="width: 900px; height: 435px;" src="{{apiUrl}}{{car.imagePath}}" >
-                </div>
-              </ng-template>
-            </ngb-carousel>
-          </div>
+    <div class="col-md-7">
+      <div class="row">
+        <div class="card" style="margin-bottom: 15px; margin-right: 15px; margin-left: 15px; width: 100%; height: auto;">
 
           <div *ngFor ="let car of carDetails; let i = index">
             <div *ngIf="i<1">
+              <div class="card-header">
+                <b>{{car.brandName}} {{car.modelName}}</b>
+              </div>
               <div class="card-body">
                 <p class="card-text"><b>Marka:</b> {{car.brandName}}</p>
                 <hr>
-                <p class="card-text"><b>Model:</b> {{car.description}}</p>
+                <p class="card-text"><b>Model:</b> {{car.modelName}}</p>
                 <hr>
                 <p class="card-text"><b>Renk:</b>{{car.colorName}}</p>
                 <hr>
                 <p class="card-text"><b>Yıl:</b>{{car.modelYear}}</p>
                 <hr>
+                <p class="card-text"><b>Not:</b> {{car.description}}</p>
+                <hr>
                 <p class="card-text"><b>Fiyat:</b> {{car.dailyPrice}} <fa-icon [icon]="faLira"></fa-icon></p>
               </div>
               <div class="card-footer">
-                <a (click)="addCart(car)" class="btn btn-primary" style="margin-right: 5px;">Kirala</a>
-                <a routerLink="/car/update/{{car.id}}" class="btn btn-primary"style="margin-right: 5px;">Arabayı Düzenle</a>
-                <a routerLink="/color/update/{{car.colorId}}" class="btn btn-primary"style="margin-right: 5px;">Rengi Düzenle</a>
-                <a routerLink="/brand/update/{{car.brandId}}" class="btn btn-primary">Markayı Düzenle</a>
+                <a data-toggle="modal" data-target="#exampleModal" class="btn btn-warning" style="width: 20%">Kirala</a>
               </div>
             </div>
-          </div>
 
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Findeks Hesaplama & Araba Kiralama</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <h5 class="card-title text-center">Findeks Hesaplama</h5>
+                    <Form [formGroup]="userFindeksForm">
+                      <div class="mb-3">
+                        <div class="form-group">
+                          <label>Tc Kimlik Numaranız</label>
+                          <input  class="form-control" type="text" formControlName="tc">
+                        </div>
+                      </div>
+                      <div class="mb-3">
+                        <div class="form-group">
+                          <label>Doğum Yılınız</label>
+                          <input class="form-control" type="text" formControlName="dateYear">
+                        </div>
+                      </div>
+                      <button class="btn btn-warning" (click)="getUserFindeks()">Puanımı Hesapla</button>
+                    </Form>
+                  </div>
+                  <div class="modal-footer">
+                    <button (click)="addCart(car)" type="button" data-dismiss="modal" class="btn btn-primary">Arabayı Kirala</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
         </div>
       </div>
-      </div>
-      </div>
+    </div>
+  </div>
+
 
 </div>
+
+
+
+
+
+
 
 
 

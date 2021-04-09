@@ -1,0 +1,25 @@
+.date {
+  width: 220px;
+  float: left;
+  margin-top: 20px;
+  margin-left: 10%;
+}
+
+.totalPrice {
+  height: 33px;
+}
+
+.glow-on-hover {
+  width: 220px;
+  height: 50px;
+  margin-top: 12px;
+  border: none;
+  outline: none;
+  color: #ebebeb;
+  background-color: #343A40;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+}
+
