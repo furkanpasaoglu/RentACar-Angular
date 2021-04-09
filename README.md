@@ -3,5 +3,8 @@
 
 #### Bağlı Olduğu Restful API: [Rent A Car BackEnd](https://github.com/furkanpasaoglu/ReCapProject "Rent A Car BackEnd")
 
-## :pushpin: Images
-![angular](https://raw.githubusercontent.com/furkanpasaoglu/githubImages/main/angular2.gif)
+## :pushpin: Admin Panel
+![angular](https://raw.githubusercontent.com/furkanpasaoglu/githubImages/main/adminpanel.gif)
+
+## :pushpin: Anasayfa
+![angular](https://raw.githubusercontent.com/furkanpasaoglu/githubImages/main/anasayfa.gif)
