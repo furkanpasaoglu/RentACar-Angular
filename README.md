@@ -8,3 +8,7 @@
 
 ## :pushpin: Anasayfa
 ![angular](https://raw.githubusercontent.com/furkanpasaoglu/githubImages/main/anasayfa.gif)
+
+## :pencil2:Authors
+* **Furkan Paşaoğlu** - [furkanpasaoglu](https://github.com/furkanpasaoglu)
+
