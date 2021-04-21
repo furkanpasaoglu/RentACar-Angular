@@ -54,8 +54,16 @@ export class NaviComponent implements OnInit {
         this.authService.getClaims(this.user.id).subscribe(response=>{
           if(response.data.length>0){
             this.localStorageService.set('yetki','var');
-     
             this.localStorageService.set('id',this.user.id.toString())
+            //Admin Kontrolü Buda Yapılabilir
+            //for(let i =0; i<response.data.length;i++){
+            //  if(response.data[i].name == 'Admin'){
+            //    this.localStorageService.set('yetki','var')
+            //  }else{
+            //    this.localStorageService.set('yetki','yok')
+            //  }
+            //}
+            //Admin Kontrol Sonu (Return edilebilir)
           }
         })
       })
