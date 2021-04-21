@@ -53,14 +53,8 @@ export class NaviComponent implements OnInit {
         this.user = response;
         this.authService.getClaims(this.user.id).subscribe(response=>{
           if(response.data.length>0){
-            for(let i =0; i< response.data.length; i++){
-              if(response.data[i].name=='admin'){
-                 this.localStorageService.set('yetki','var')
-              }else{
-                this.localStorageService.set('yetki','yok')
-              }
-            }
-          
+            this.localStorageService.set('yetki','var');
+     
             this.localStorageService.set('id',this.user.id.toString())
           }
         })
