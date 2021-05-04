@@ -1,13 +1,13 @@
 # ReCapProject - Araç Kiralama Sistemi
-![cizimbanner2](https://raw.githubusercontent.com/furkanpasaoglu/githubImages/main/Yaz%C4%B1l%C4%B1m%20Geli%C5%9Ftirici%20Yeti%C5%9Ftirme%20kamp%C4%B1.png) 
+![yazilim gelistiriciyetistirmekampi](https://user-images.githubusercontent.com/16624085/117002814-b7275680-acec-11eb-9d5b-2cc18f86d025.png)
 
 #### Bağlı Olduğu Restful API: [Rent A Car BackEnd](https://github.com/furkanpasaoglu/ReCapProject "Rent A Car BackEnd")
 
 ## :pushpin: Admin Panel
-![angular](https://raw.githubusercontent.com/furkanpasaoglu/githubImages/main/adminpanel.gif)
+![adminpanel](https://user-images.githubusercontent.com/16624085/117003258-4b91b900-aced-11eb-9cdb-6c976455a06d.gif)
 
 ## :pushpin: Anasayfa
-![angular](https://raw.githubusercontent.com/furkanpasaoglu/githubImages/main/anasayfa.gif)
+![anasayfa](https://user-images.githubusercontent.com/16624085/117003289-564c4e00-aced-11eb-9c26-6881eff88238.gif)
 
 ## :pencil2:Authors
 * **Furkan Paşaoğlu** - [furkanpasaoglu](https://github.com/furkanpasaoglu)
