@@ -47,7 +47,7 @@ import { CustomerTableComponent } from './components/customer-table/customer-tab
 import { CarImageAddComponent } from './components/car-image-add/car-image-add.component';
 import { CarImageUpdateComponent } from './components/car-image-update/car-image-update.component';
 import { CarImageDetailComponent } from './components/car-image-update/car-image-detail/car-image-detail.component';
-
+ 
 
 @NgModule({
   declarations: [
